@@ -35,7 +35,9 @@ $app->post('/', function() use($app) {
 				'acces_token' => getenv('VK_TOKEN'),
 				'v' => '5,69'
 			);
-		
+			
+			file_get_contents('https://api.vk.com/method/messages.send?' . http_build_query($request_params));
+			return 'ok';
 		//////
 			break;
 	}
