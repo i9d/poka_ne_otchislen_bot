@@ -47,7 +47,6 @@ $app->post('/', function() use($app) {
 		//////
 			break;*/
 			
-			/Если это уведомление о новом сообщении... 
 case 'message_new': 
 //...получаем id его автора 
 $user_id = $data->object->user_id; 
