@@ -21,13 +21,13 @@ $app->get('/', function() use($app) {
 $app->post('/bot', function() use($app) {
 	$data = json_decode(file_get_contents('php://input'));
 	if(!$data) //пустой
-	if($data->secret !== getenv('VK_CONFIRMATION_CODE') && $data->type !== 'confirmation')
+	if($data->secret !== getenv('0b9df2d1') && $data->type !== 'confirmation')
 		return 'sovsemneok'; //если токен не совпадает
 	
 	switch($data->type)
 	{
 		case 'confirmation':
-			return getenv('VK_CONFIRMATION_CODE');//VK_CONFIRMATION_CODE
+			return getenv('0b9df2d1');//VK_CONFIRMATION_CODE
 			break;
 		
 		case 'message_new':
