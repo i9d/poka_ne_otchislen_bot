@@ -1,8 +1,6 @@
 <?php
-
 require('../vendor/autoload.php');
-//getenv('VK_TOKEN');
-$VK_CONFIRM_CODE = '0b9df2d1';
+
 $app = new Silex\Application();
 $app['debug'] = true;
 
@@ -15,7 +13,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 // Our web handlers
 
 $app->get('/', function() use($app) {
- return $VK_CONFIRM_CODE;
+ return '0b9df2d1';
 });
 
 $app->post('/', function() use($app) {
