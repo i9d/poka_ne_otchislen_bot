@@ -13,7 +13,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 // Our web handlers
 
 $app->get('/', function() use($app) {
- return '0b9df2d1';
+ return getenv('VK_CONFIRMATION_CODE');
 });
 
 $app->post('/', function() use($app) {
