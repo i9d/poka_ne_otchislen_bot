@@ -29,7 +29,12 @@ $app->post('/', function() use($app) {
 			break;
 		
 		case 'message_new':
-		
+			$request_params = array)
+				'user_id' => $data->object->user_id,
+				'message' => 'Привет! Я очень умный бот(нет)',
+				'acces_token => getenv('VK_TOKEN'),
+				'v' = '5,69'
+			);
 		
 		//////
 			break;
