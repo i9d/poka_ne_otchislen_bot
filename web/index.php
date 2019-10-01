@@ -8,12 +8,10 @@ $app['debug'] = true;
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
   'monolog.logfile' => 'php://stderr',
 ));
-
-
 // Our web handlers
 
 $app->get('/', function() use($app) {
- return getenv('VK_CONFIRMATION_CODE');
+ return 'ну типа работает....';
 });
 
 $app->post('/', function() use($app) {
