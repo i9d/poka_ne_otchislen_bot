@@ -25,7 +25,8 @@ $app->post('/', function() use($app) {
 	switch($data->type)
 	{
 		case 'confirmation':
-			return getenv('VK_CONFIGURATION_CODE:');//VK_CONFIGURATION_CODE:
+		//	return getenv('VK_CONFIGURATION_CODE:');//VK_CONFIGURATION_CODE:
+			return 'chlen';
 			break;
 		
 		case 'message_new':
