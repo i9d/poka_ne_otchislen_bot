@@ -18,7 +18,7 @@ $app->get('/', function() use($app) {
  return "Hello World! Kak dela?";
 });
 
-$app->post('/', function() use($app) {
+$app->post('/bot', function() use($app) {
 	$data = json_decode(file_get_contents('php://input'));
 	if(!$data) //пустой
 	if($data->secret !== getenv('VK_CONFIRMATION_CODE') && $data->type !== 'confirmation')
