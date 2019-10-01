@@ -15,7 +15,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 // Our web handlers
 
 $app->get('/', function() use($app) {
- return "Hello World! Kak dela? A?";
+ return 'VK_CONFIRMATION_CODE';
 });
 
 $app->post('/', function() use($app) {
@@ -27,7 +27,7 @@ $app->post('/', function() use($app) {
 	switch($data->type)
 	{
 		case 'confirmation':
-			return getenv("0b9df2d1");//VK_CONFIRMATION_CODE
+			return getenv('VK_CONFIRMATION_CODE');//VK_CONFIRMATION_CODE
 			break;
 		
 		case 'message_new':
