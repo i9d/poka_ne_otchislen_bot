@@ -32,9 +32,6 @@ $app->post('/', function() use($app) {
 			$user_info = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids={$user_id}&access_token={getenv('VK_TOKEN');}&v=5.69")); 
 			$user_name = $user_info->response[0]->first_name; 
 			
-			
-			$user_info = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids={$user_id}&access_token={$token}&v=5.0")); 
-			$user_name = $user_info->response[0]->first_name; 
 	
 			$request_params = array(
 				'user_id' => $user_id, 
