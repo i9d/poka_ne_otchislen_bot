@@ -33,7 +33,7 @@ $app->post('/', function() use($app) {
 				'user_id' => $data->object->user_id,
 				'message' => 'Привет! Я очень умный бот(нет)',
 				'acces_token => getenv('VK_TOKEN'),
-				'v' = '5,69'
+				'v' => '5,69'
 			);
 		
 		//////
