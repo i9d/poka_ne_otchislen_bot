@@ -23,6 +23,7 @@ $app->get('/', function() use($app) {
 $app->post('/', function() use($app) {
 	$data = json_decode(file_get_contents('php://input'));
 	if(!$data) //пустой
+		return 'neok';
 	if($data->secret !== $VK_CONFIGURATION_CODE) && $data->type !== 'confirmation')
 		return 'sovsemneok'; //если токен не совпадает
 	
