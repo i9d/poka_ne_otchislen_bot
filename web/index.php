@@ -27,7 +27,7 @@ $app->post('/', function() use($app) {
 			break;
 		
 		case 'message_new':
-			$token = '0736a0cdc42087343c259845f58b9a7b12ea38ff65515261bffd0e34bdd6bd509d1380c46013536150b82';
+			//$token = '0736a0cdc42087343c259845f58b9a7b12ea38ff65515261bffd0e34bdd6bd509d1380c46013536150b82';
 			$user_id = $data->object->user_id; 
 			$user_info = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids={$user_id}&access_token={getenv('VK_TOKEN');}&v=5.69")); 
 			$user_name = $user_info->response[0]->first_name; 
@@ -47,8 +47,12 @@ $app->post('/', function() use($app) {
 			echo('ok');
 		//////
 			break;
-			
-	}
+
+		default:
+			echo('ok');
+			break;
+			}
+	
 	
 	
 });
