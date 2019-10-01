@@ -28,7 +28,7 @@ $app->post('/', function() use($app) {
 			return getenv('VK_CONFIRMATION_CODE');//VK_CONFIGURATION_CODE:
 			break;
 		
-		case 'message_new':
+		/*case 'message_new':
 		
 			$user_id = $data->object->user_id; 
 			$user_info = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids={$user_id}&access_token={$token}&v=5.0")); 
@@ -45,7 +45,35 @@ $app->post('/', function() use($app) {
 			file_get_contents('https://api.vk.com/method/messages.send?'. $get_params); 
 			echo('ok');
 		//////
-			break;
+			break;*/
+			
+			/Если это уведомление о новом сообщении... 
+case 'message_new': 
+//...получаем id его автора 
+$user_id = $data->object->user_id; 
+//затем с помощью users.get получаем данные об авторе 
+$user_info = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids={$user_id}&access_token={$token}&v=5.0")); 
+
+//и извлекаем из ответа его имя 
+$user_name = $user_info->response[0]->first_name; 
+
+//С помощью messages.send отправляем ответное сообщение 
+$request_params = array( 
+'message' => "Hello, {$user_name}!", 
+'user_id' => $user_id, 
+'access_token' => $token, 
+'v' => '5.0' 
+); 
+
+$get_params = http_build_query($request_params); 
+
+file_get_contents('https://api.vk.com/method/messages.send?'. $get_params); 
+
+//Возвращаем "ok" серверу Callback API 
+
+echo('ok'); 
+
+break; 
 	}
 	
 	
