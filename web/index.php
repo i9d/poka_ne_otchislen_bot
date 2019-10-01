@@ -15,7 +15,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 // Our web handlers
 
 $app->get('/', function() use($app) {
- return 'VK_CONFIRMATION_CODE';
+ return VK_CONFIRMATION_CODE;
 });
 
 $app->post('/', function() use($app) {
