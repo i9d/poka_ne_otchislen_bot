@@ -49,7 +49,6 @@ $app->post('/', function() use($app) {
 	}
 	
 	
- return "oh fignya kakayato!!";
 });
 
 $app->run();
