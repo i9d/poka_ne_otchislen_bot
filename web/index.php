@@ -41,12 +41,12 @@ $app->post('/', function() use($app) {
 			);
 			$get_params = http_build_query($request_params); 
 			file_get_contents('https://api.vk.com/method/messages.send?'. $get_params); 
-			echo('ok');
+			return('OK');
 		//////
 			break;
 
 		default:
-			echo('ok');
+			return('OK');
 			break;
 			}
 	
