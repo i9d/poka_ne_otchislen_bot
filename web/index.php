@@ -9,13 +9,14 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 ));
 // Our web handlers
 $app->get('/', function() use($app) {
- return 'ну типа работает....';
+ return 'ну типа работает....!';
 });
 
 
 
 $app->post('/', function() use($app) {
 	$data = json_decode(file_get_contents('php://input'));
+	if(!$data)
 	if($data->secret !== getenv('VK_CONFIRMATION_CODE') && $data->type !== 'confirmation')
 		return 'invalid_token';
 	
