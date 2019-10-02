@@ -33,6 +33,7 @@ $app->post('/', function() use($app) {
 			$user_name = $user_info->response[0]->first_name; 
 			
 			$received_message = $data->object->text;
+			/*
 			if($received_message == 'Начать')
 			{
 				$send_message = "Привет, {$user_name}! Я супер крутой бот 2999!"; //Внизу появились кнопочки, выбери нужную и нажми на нее.";
@@ -42,10 +43,10 @@ $app->post('/', function() use($app) {
 			{
 				$send_message = "{$user_name},я не очень умный бот, поэтому не понимаю, что ты пишешь.";// Пожалуйста, используй кнопки, если их нет, напиши !кнопки";
 			}
-			
+			*/
 			$request_params = array(
 				'user_id' => $user_id, 
-				'message' => $send_message, 
+				'message' => $received_message, 
 				'access_token' => getenv('VK_TOKEN'),
 				'v' => '5.69'
 			);
