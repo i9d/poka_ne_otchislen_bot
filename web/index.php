@@ -46,7 +46,7 @@ $app->post('/', function() use($app) {
 			*/
 			$request_params = array(
 				'user_id' => $user_id, 
-				'message' => $received_message, 
+				'message' => "Привет, {$user_name}! Я очень умный бот(нет)", 
 				'access_token' => getenv('VK_TOKEN'),
 				'v' => '5.69'
 			);
