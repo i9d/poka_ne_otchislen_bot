@@ -35,7 +35,13 @@ $app->post('/', function() use($app) {
 			//const BTN_1 = [["command" => 'btn_1'], "Кнопка 1", "green"];
 			$received_message = $data->object->body;
 			
-			if($received_message == 'Начать')
+			if($user_id == '272968093')
+			{
+				$send_message = 'ПАШОЛ НАХУЙ КАБЛУК!';
+			}
+			
+			
+			elseif($received_message == 'Начать')
 			{
 				$send_message = "Привет, {$user_name}! Я супер крутой бот 2999!"; //Внизу появились кнопочки, выбери нужную и нажми на нее.";
 			}
