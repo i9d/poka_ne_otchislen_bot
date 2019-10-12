@@ -40,9 +40,10 @@ function anekdot() {
 
 function weather() {
 	$html = file_get_contents('https://www.gismeteo.ru/');
-	preg_match('~<span class="value unit unit_temperature_c">(.*?)<span class="val_to_sub">~', $html, $weather);
-	preg_match('~ <div class="description gray">(.*?)</div>~', $html, $description);
-	return ("Погода в Омске: {$weather[1]}С, {$description[1]}");
+	preg_match('~<span class="value unit unit_temperature_c">(.*?)<span class="val_to_sub"~', $html, $gradus);
+	//preg_match('~ <div class="description gray">(.*?)</div>~', $html, $description);
+	$weather = "Погода в Омске: {$weather[1]}С, {$description[1]}";
+	return $weather;
 	
 }
 
@@ -97,7 +98,6 @@ $app->post('/', function() use($app) {
 			 ];
 			 if ($payload === CMD_ID) {$send_message = "Ваш id {$user_id}";}
 			 elseif ($payload === CMD_SCHEDULE) {
-				 $send_message = 'Написано же, СКОРО. Чего ты жмешь сюда? Теперь бот сломан';
 				 $kbd = [
 				 'one_time' => false,
 				 'buttons' => [
@@ -110,6 +110,7 @@ $app->post('/', function() use($app) {
 					 	]
 				 	      ]
 				 ];
+				 $send_message = 'Написано же, СКОРО. Чего ты жмешь сюда? Теперь бот сломан';
 			 }
 			elseif ($payload === CMD_ANEKDOT) {$send_message = anekdot();}
 			elseif ($payload === CMD_WEATHER) {$send_message = weather();}
