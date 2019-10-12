@@ -41,10 +41,9 @@ function anekdot() {
 function weather() {
 	$html = file_get_contents('https://yandex.ru/pogoda/omsk');
 	preg_match('~<span class="temp__value">(.*?)</span>~', $html, $gradus);
-	preg_match('~<div class="link__condition day-anchor i-bem" data-bem='{"day-anchor":{"anchor":12}}'>(.*?)</div>~', $html, $description);
-	$weather = "Погода в Омске: {$weather[1]}С, {$description[1]}";
+//	preg_match('~<div class="link__condition day-anchor i-bem" data-bem='{"day-anchor":{"anchor":12}}'>(.*?)</div>~', $html, $description);
+	$weather = "Погода в Омске: {$weather[1]}С,";// {$description[1]}";
 	return $weather;
-	
 }
 
 function sendmessage($user_id, $message, $keyboard) {
