@@ -39,9 +39,9 @@ function anekdot() {
 }
 
 function weather() {
-	$html = file_get_contents('https://www.gismeteo.ru/');
-	preg_match('~<span class="value unit unit_temperature_c">(.*?)<span class="val_to_sub"~', $html, $gradus);
-	//preg_match('~ <div class="description gray">(.*?)</div>~', $html, $description);
+	$html = file_get_contents('https://yandex.ru/pogoda/omsk');
+	preg_match('~<span class="temp__value">(.*?)</span>~', $html, $gradus);
+	preg_match('~<div class="link__condition day-anchor i-bem" data-bem='{"day-anchor":{"anchor":12}}'>(.*?)</div>~', $html, $description);
 	$weather = "Погода в Омске: {$weather[1]}С, {$description[1]}";
 	return $weather;
 	
