@@ -9,7 +9,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 ));
 // Our web handlers
 $app->get('/', function() use($app) {
- return 'ну типа работает....!!!!какбэээ!';
+ return 'ну типа работает....!!!!какбэээ!!!!!!!!!!!!!!!!!!!!!!';
 });
 
 const COLOR_NEGATIVE = 'negative';
