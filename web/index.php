@@ -112,7 +112,7 @@ $app->post('/', function() use($app) {
 				 ];
 			 }
 			elseif ($payload === CMD_ANEKDOT) {$send_message = anekdot();}
-			elseif ($payload --- CMD_WEATHER) {$send_message = weather();}
+			elseif ($payload === CMD_WEATHER) {$send_message = weather();}
 			
 			elseif($user_id == '272968093')
 			{$send_message = 'вышел отсудава розбiйник';}
