@@ -19,6 +19,7 @@ const COLOR_PRIMARY = 'primary';
 const CMD_ID = 'ID';
 const CMD_SCHEDULE = 'SCHEDULE';
 const CMD_ANEKDOT = 'ANEKDOT';
+const CMD_WEATHER = 'WEATHER';
 
 function getBtn($label, $color, $payload = '') {
     return [
@@ -35,6 +36,14 @@ function anekdot() {
 	$html = file_get_contents('https://www.anekdot.ru/random/anekdot/');
 	preg_match('~<div class="text">(.*?)</div>~', $html, $anekdotik);
 	return $anekdotik[1];
+}
+
+function weather() {
+	$html = file_get_contents('https://www.gismeteo.ru/');
+	preg_match('~<span class="value unit unit_temperature_c">(.*?)<span class="val_to_sub">~', $html, $weather);
+	preg_match('~ <div class="description gray">(.*?)</div>~', $html, $description);
+	return ("Погода в Омске: {$weather[1]}С, {$description[1]}");
+	
 }
 
 function sendmessage($user_id, $message, $keyboard) {
@@ -83,7 +92,7 @@ $app->post('/', function() use($app) {
 				 'one_time' => false,
 				 'buttons' => [
 					 [getBtn("Покажи мой ID", COLOR_PRIMARY, CMD_ID), getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
-					 [getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT)],
+					 [getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 				 ]
 			 ];
 			 if ($payload === CMD_ID) {$send_message = "Ваш id {$user_id}";}
@@ -103,6 +112,7 @@ $app->post('/', function() use($app) {
 				 ];
 			 }
 			elseif ($payload === CMD_ANEKDOT) {$send_message = anekdot();}
+			elseif ($payload --- CMD_WEATHER) {$send_message = weather();}
 			
 			elseif($user_id == '272968093')
 			{$send_message = 'вышел отсудава розбiйник';}
