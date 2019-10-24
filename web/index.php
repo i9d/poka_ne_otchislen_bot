@@ -51,7 +51,7 @@ function weather() {
 function schedule($group, $day)
 {
 	$string = '';
-	$day = 'ПН';
+	$day = 'ВТ';
 	$group = 3;
 	
 	$day_arr = array('ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ');
