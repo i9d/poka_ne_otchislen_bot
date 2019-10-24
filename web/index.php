@@ -1,5 +1,7 @@
 <?php
+
 require('../vendor/autoload.php');
+require ('nokogiri.php');
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -44,6 +46,70 @@ function weather() {
 //	preg_match('~<div class="link__condition day-anchor i-bem" data-bem='{"day-anchor":{"anchor":12}}'>(.*?)</div>~', $html, $description);
 	$weather = "Погода в Омске: {$gradus[1]}°С";// {$description[1]}";
 	return $weather;
+}
+
+function schedule($group, $day)
+{
+	$string = '';
+	$day = 'ПН';
+	$group = 3;
+	
+	$day_arr = array('ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ');
+	$indexOfDayArr = array_search($day, $day_arr);  
+	$html = file_get_contents('http://fkn.univer.omsk.su/academics/Schedule/schedule3_1.htm');
+	$saw = new nokogiri($html);
+	$table = $saw->get('table'); 
+	$tr = $table->get('tr');
+	
+	$str = 0;		//строка
+	$t = 1; 	//время
+	
+//	var_dump( $tr->toArray()[$str]['td'][$group]["#text"] );
+//	echo count( $tr->toArray()[$str]['td'][$group]["#text"] );
+	/*__________________________________________*/ // Ищем нужный день (индекс строки, где нужный день)
+	while (cell($tr, $str, 0) !== $day)
+	{$str++;}
+	
+	/*__________________________________________*/ //Парсим группу, выводим группу и день
+	$egroup = cell($tr, 0, $group);
+	$string+= $egroup;
+	$string+= "\n";
+	$string+= $day;
+	$string+= "\n";
+	/*__________________________________________*/
+
+	$time = cell($tr, $str, $t);	//парсим время
+	$span = colspan($tr, $str, $group);
+	$lesson = cell($tr, $str, $group-$span);	//парсим пару
+	if($lesson !== Null)	//если  пара есть, выводим время и пару
+	{
+		$string+= $time;
+		$string+= "\n";
+		$string+= $lesson;
+		$string+= "\n";
+	}
+
+	$group--;	//сдвиг влево из-за того, что был день недели
+	$t--;
+	$str++;		//следующая строка
+	
+	while (cell($tr, $str, 0) !== $day_arr[$indexOfDayArr+1])
+	{
+		$time = cell($tr, $str, $t);
+		$span = colspan($tr, $str, $group);
+		$lesson = cell($tr, $str, $group-$span);
+		if($lesson !== Null)
+		{
+		$string+= $time;
+		$string+= "\n";
+		$string+= $lesson;
+		$string+= "\n";
+		}
+		$str++;
+	} 
+	
+	return $string;
+	
 }
 
 function sendmessage($user_id, $message, $keyboard) {
@@ -97,7 +163,7 @@ $app->post('/', function() use($app) {
 			 ];
 			 if ($payload === CMD_ID) {$send_message = "Ваш id {$user_id}";}
 			 elseif ($payload === CMD_SCHEDULE) {
-				 $kbd = [
+				/* $kbd = [
 				 'one_time' => false,
 				 'buttons' => [
 						 [
@@ -108,11 +174,17 @@ $app->post('/', function() use($app) {
 						 getBtn("Главное меню", COLOR_DEFAULT, CMD_NEXT),
 					 	]
 				 	      ]
-				 ];
-				 $send_message = 'Написано же, СКОРО. Чего ты жмешь сюда? Теперь бот сломан';
+				 ];*/
+				// $send_message = 'Написано же, СКОРО. Чего ты жмешь сюда? Теперь бот сломан';
+				
+				$send_message = schedule(0,0);
+				
+				
+				
 			 }
 			elseif ($payload === CMD_ANEKDOT) {$send_message = anekdot();}
 			elseif ($payload === CMD_WEATHER) {$send_message = weather();}
+
 			
 			elseif($user_id == '272968093')
 			{$send_message = 'вышел отсудава розбiйник';}
