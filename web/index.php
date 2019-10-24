@@ -72,10 +72,10 @@ function schedule($group, $day)
 	
 	/*__________________________________________*/ //Парсим группу, выводим группу и день
 	$egroup = cell($tr, 0, $group);
-	$string+= $egroup;
-	$string+= "\n";
-	$string+= $day;
-	$string+= "\n";
+	$string.= $egroup;
+	$string.= "\n";
+	$string.= $day;
+	$string.= "\n";
 	/*__________________________________________*/
 
 	$time = cell($tr, $str, $t);	//парсим время
@@ -83,10 +83,10 @@ function schedule($group, $day)
 	$lesson = cell($tr, $str, $group-$span);	//парсим пару
 	if($lesson !== Null)	//если  пара есть, выводим время и пару
 	{
-		$string+= $time;
-		$string+= "\n";
-		$string+= $lesson;
-		$string+= "\n";
+		$string .= $time;
+		$string .= "\n";
+		$string .= $lesson;
+		$string .= "\n";
 	}
 
 	$group--;	//сдвиг влево из-за того, что был день недели
@@ -100,10 +100,10 @@ function schedule($group, $day)
 		$lesson = cell($tr, $str, $group-$span);
 		if($lesson !== Null)
 		{
-		$string+= $time;
-		$string+= "\n";
-		$string+= $lesson;
-		$string+= "\n";
+		$string .= $time;
+		$string .= "\n";
+		$string .= $lesson;
+		$string .= "\n";
 		}
 		$str++;
 	} 
