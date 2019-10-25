@@ -140,6 +140,8 @@ $app->post('/', function() use($app) {
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
 						$send_message = 'Выберите день недели:';
+						sendmessage($user_id, $send_message, $kbd);
+						$group = 2;
 						break;
 						
 						
@@ -147,11 +149,13 @@ $app->post('/', function() use($app) {
 						$kbd = [
 							'one_time' => false,
 							'buttons' => [
-							[getBtn("ПН", COLOR_PRIMARY, SBB_PN), getBtn("ВТ", COLOR_PRIMARY, SBB_VT), getBtn("СР", COLOR_PRIMARY, SBB_SR)],
+							[getBtn("ПН", COLOR_PRIMARY, SBS_PN), getBtn("ВТ", COLOR_PRIMARY, SBB_VT), getBtn("СР", COLOR_PRIMARY, SBB_SR)],
 							[getBtn("ЧТ", COLOR_PRIMARY, SBB_CT), getBtn("ПТ", COLOR_PRIMARY, SBB_PT), getBtn("СБ", COLOR_PRIMARY, SBB_SB)],
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
 						$send_message = 'Выберите день недели:';
+						sendmessage($user_id, $send_message, $kbd);
+						$group = 3;
 						break;
 						
 						
@@ -164,9 +168,11 @@ $app->post('/', function() use($app) {
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
 						$send_message = 'Выберите день недели:';
+						sendmessage($user_id, $send_message, $kbd);
 						break;	
 						
-						
+					
+	/*
 					case SBS_PN:
 						$send_message = schedule(2,'ПН');
 						break;
@@ -174,7 +180,7 @@ $app->post('/', function() use($app) {
 					case SBS_VT:
 						$send_message = schedule(2,'ВТ');
 						break;	
-						
+						*/
 					
 					
 			
@@ -184,6 +190,13 @@ $app->post('/', function() use($app) {
 					default:
 						$send_message = "{$user_name},я не очень умный бот, поэтому не понимаю, что ты пишешь. Используй кнопки";
 						break;
+				}
+				
+				if($payload === SBS_PN) 
+				{
+					$send_message = schedule($group,'ПН');
+					sendmessage($user_id, $send_message, $kbd);
+					
 				}
 			 
 			 
