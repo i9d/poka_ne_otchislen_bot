@@ -115,7 +115,7 @@ $app->post('/', function() use($app) {
 				 		// getBtn("2курс", COLOR_PRIMARY, CMD_NEXT),
 						 getBtn("3курс", COLOR_PRIMARY, CMD_SECOND),
 						// getBtn("4курс", COLOR_PRIMARY, CMD_NEXT),
-						 getBtn("Главное меню", COLOR_DEFAULT, CMD_NEXT),
+						 getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN),
 					 	]
 				 	      ]
 				 ];
@@ -134,7 +134,7 @@ $app->post('/', function() use($app) {
 						 getBtn("СББ-701", COLOR_PRIMARY, CMD_SBB701),
 						 getBtn("СМБ-701", COLOR_PRIMARY, CMD_SMB701),
 						// getBtn("4курс", COLOR_PRIMARY, CMD_NEXT),
-						 getBtn("Главное меню", COLOR_DEFAULT, CMD_NEXT),
+						 getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN),
 					 	]
 				 	      ]
 				 ];
@@ -143,6 +143,7 @@ $app->post('/', function() use($app) {
 			elseif ($payload === CMD_SBS701) {$send_message = schedule(2,0);}
 			elseif ($payload === CMD_SBB701) {$send_message = schedule(3,0);}
 			elseif ($payload === CMD_SMB701) {$send_message = schedule(4,0);}
+			elseif ($payload === CMD_MAIN) {$send_message = 'Вы в главном меню';}
 
 			
 			elseif($user_id == '272968093')
