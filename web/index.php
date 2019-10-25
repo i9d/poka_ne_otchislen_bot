@@ -49,6 +49,49 @@ function weather() {
 	return $weather;
 }
 
+<<<<<<< HEAD
+=======
+function schedule($group, $day)
+{
+	$string = '';
+	$day = 'ВТ';
+	$group = 3;
+	
+	$day_arr = array('ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ');
+	$indexOfDayArr = array_search($day, $day_arr);  
+	$html = file_get_contents('http://fkn.univer.omsk.su/academics/Schedule/schedule3_1.htm');
+	$saw = new nokogiri($html);
+	$table = $saw->get('table'); 
+	$tr = $table->get('tr');
+	
+	$str = 0;		//строка
+	$t = 1; 	//время
+	
+//	var_dump( $tr->toArray()[$str]['td'][$group]["#text"] );
+//	echo count( $tr->toArray()[$str]['td'][$group]["#text"] );
+	/*__________________________________________*/ // Ищем нужный день (индекс строки, где нужный день)
+	while (cell($tr, $str, 0) !== $day)
+	{$str++;}
+	
+	/*__________________________________________*/ //Парсим группу, выводим группу и день
+	$egroup = cell($tr, 0, $group);
+	$string.= $egroup;
+	$string.= "\n";
+	$string.= $day;
+	$string.= "\n";
+	/*__________________________________________*/
+
+	$time = cell($tr, $str, $t);	//парсим время
+	$span = colspan($tr, $str, $group);
+	$lesson = cell($tr, $str, $group-$span);	//парсим пару
+	if($lesson !== Null)	//если  пара есть, выводим время и пару
+	{
+		$string .= $time;
+		$string .= "\n";
+		$string .= $lesson;
+		$string .= "\n";
+	}
+>>>>>>> 2ec3acee85194f6c1599b4f54c28c61a8a215ba1
 
 
 function sendmessage($user_id, $message, $keyboard) {
