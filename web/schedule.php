@@ -61,7 +61,7 @@ function schedule($group, $day)
 		$str++;
 	} 
 	if($string === Null)
-	{$string .= 'Пар нет';}
+	{$string .= "Пар нет";}
 	return $string;
 	
 }
