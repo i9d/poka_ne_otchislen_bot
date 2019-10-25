@@ -23,16 +23,10 @@ const CMD_ID = 'ID';
 const CMD_SCHEDULE = 'SCHEDULE';
 const CMD_ANEKDOT = 'ANEKDOT';
 const CMD_WEATHER = 'WEATHER';
-const CMD_SECOND = '2курс';
+
 const CMD_SBS701 = 'СБС-701';
 const CMD_SBB701 = 'СББ-701';
 const CMD_SMB701 = 'СМБ-701';
-const CMD_PN = 'ПН';
-const CMD_VT = 'ВТ';
-const CMD_SR = 'СР';
-const CMD_CT = 'ЧТ';
-const CMD_PT = 'ПТ';
-const CMD_SB = 'СБ';
 $group = '2';
 
 function getBtn($label, $color, $payload = '') {
@@ -74,19 +68,6 @@ function sendmessage($user_id, $message, $keyboard) {
 	$get_params = http_build_query($request_params); 
 	file_get_contents('https://api.vk.com/method/messages.send?'. $get_params); 
 }
-
-function week()
-{
-	$kbd = [
-				 'one_time' => true,
-				 'buttons' => [
-				 [getBtn("ПН", COLOR_PRIMARY, CMD_PN), getBtn("ВТ", COLOR_PRIMARY, CMD_VT), getBtn("СР", COLOR_PRIMARY, CMD_SR)],
-				 [getBtn("ЧТ", COLOR_PRIMARY, CMD_CT), getBtn("ПТ", COLOR_PRIMARY, CMD_PT), getBtn("СБ", COLOR_PRIMARY, CMD_SB)],
-				 [getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
-				]
-				];
-	
-}
 $app->post('/', function() use($app) {
 	$data = json_decode(file_get_contents('php://input'));
 	if(!$data)
@@ -98,6 +79,7 @@ $app->post('/', function() use($app) {
 		case 'confirmation':
 			return getenv('VK_CONFIRMATION_CODE');
 			break;
+			
 		
 		case 'group_leave':
 			$token = getenv('VK_TOKEN');
@@ -123,27 +105,90 @@ $app->post('/', function() use($app) {
 					 [getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 				 ]
 			 ];
-			 if ($payload === CMD_ID) {$send_message = "Ваш id {$user_id}";}
-			 elseif ($payload === CMD_SCHEDULE) {
-				 $kbd = [
-				 'one_time' => true,
-				 'buttons' => [
-						 [
-						 //getBtn("1курс", COLOR_PRIMARY, CMD_NEXT),
-				 		// getBtn("2курс", COLOR_PRIMARY, CMD_NEXT),
-						 getBtn("3курс", COLOR_PRIMARY, CMD_SECOND),
-						// getBtn("4курс", COLOR_PRIMARY, CMD_NEXT),
-						 getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN),
-					 	]
-				 	      ]
-				 ];
-				 $send_message = 'Выберите курс:';
-				
+			 
+				switch($payload)
+				{
+					case 'CMD_ID':
+						$send_message = "Ваш id {$user_id}";
+						break;
+					
+					case 'CMD_ANEKDOT':
+						$send_message = anekdot();
+						break;
+					
+					case 'CMD_WEATHER':
+						$send_message = weather();
+						break;
+						
+					case 'CMD_SCHEDULE':
+						$kbd = [
+						'one_time' => true,
+						'buttons' => [
+							[getBtn("СБС-701", COLOR_PRIMARY, CMD_SBS701), getBtn("СББ-701", COLOR_PRIMARY, CMD_SBB701), getBtn("СМБ-701", COLOR_PRIMARY, CMD_SMB701)],
+							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
+						]];
+						$send_message = 'Выберите группу:';
+						break;
+						
+					/*__________________НИЖЕ МЯСО__________________*/
+					case 'CMD_SBS701':
+						$kbd = [
+							'one_time' => false,
+							'buttons' => [
+							[getBtn("ПН", COLOR_PRIMARY, SBS_PN), getBtn("ВТ", COLOR_PRIMARY, SBS_VT), getBtn("СР", COLOR_PRIMARY, SBS_SR)],
+							[getBtn("ЧТ", COLOR_PRIMARY, SBS_CT), getBtn("ПТ", COLOR_PRIMARY, SBS_PT), getBtn("СБ", COLOR_PRIMARY, SBS_SB)],
+							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
+						]];
+						$send_message = 'Выберите день недели:';
+						break;
+						
+						
+					case 'CMD_SBB701':
+						$kbd = [
+							'one_time' => false,
+							'buttons' => [
+							[getBtn("ПН", COLOR_PRIMARY, SBB_PN), getBtn("ВТ", COLOR_PRIMARY, SBB_VT), getBtn("СР", COLOR_PRIMARY, SBB_SR)],
+							[getBtn("ЧТ", COLOR_PRIMARY, SBB_CT), getBtn("ПТ", COLOR_PRIMARY, SBB_PT), getBtn("СБ", COLOR_PRIMARY, SBB_SB)],
+							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
+						]];
+						$send_message = 'Выберите день недели:';
+						break;
+						
+						
+					case 'CMD_SMB701':
+						$kbd = [
+							'one_time' => false,
+							'buttons' => [
+							[getBtn("ПН", COLOR_PRIMARY, SMB_PN), getBtn("ВТ", COLOR_PRIMARY, SMB_VT), getBtn("СР", COLOR_PRIMARY, SMB_SR)],
+							[getBtn("ЧТ", COLOR_PRIMARY, SMB_CT), getBtn("ПТ", COLOR_PRIMARY, SMB_PT), getBtn("СБ", COLOR_PRIMARY, SMB_SB)],
+							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
+						]];
+						$send_message = 'Выберите день недели:';
+						break;	
+						
+						
+					case 'SBS_PN':
+						$send_message = schedule(2,'ПН');
+						break;
+						
+					case 'SBS_VT':
+						$send_message = schedule(2,'ВТ');
+						break;	
+						
+					
+					
+			
+						
+						
+						
+						
+				}
+			 
+			 
+			 
 				//$send_message = schedule(0,0);
 			 }
-			elseif ($payload === CMD_ANEKDOT) {$send_message = anekdot();}
-			elseif ($payload === CMD_WEATHER) {$send_message = weather();}
-			elseif ($payload === CMD_SECOND) {
+		/*	elseif ($payload === CMD_SECOND) {
 				 $kbd = [
 				 'one_time' => true,
 				 'buttons' => [
@@ -161,14 +206,14 @@ $app->post('/', function() use($app) {
 			elseif ($payload === CMD_SBS701) {$group=2; week();}//{$send_message = schedule(2,0);}
 			elseif ($payload === CMD_SBB701) {$group=3;	week();}//{$send_message = schedule(3,0);}
 			elseif ($payload === CMD_SMB701) {$group=4;	week();}//{$send_message = schedule(4,0);}
-			elseif ($payload === CMD_MAIN) {$send_message = 'Вы в главном меню';}
-			elseif($payload === CMD_PN) {$send_message = schedule($group,0);}
+			elseif ($payload === CMD_MAIN) {$send_message = 'Вы в главном меню';}*/
+	/*		elseif($payload === CMD_PN) {$send_message = schedule($group,0);}
 			elseif($payload === CMD_VT) {$send_message = schedule($group,1);}
 			elseif($payload === CMD_SR) {$send_message = schedule($group,2);}
 			elseif($payload === CMD_CT) {$send_message = schedule($group,3);}
 			elseif($payload === CMD_PT) {$send_message = schedule($group,4);}
 			elseif($payload === CMD_SB) {$send_message = schedule($group,5);}
-			
+			*/
 			elseif($received_message == 'Начать')
 			{$send_message = "Привет, {$user_name}! Я супер крутой бот 2999! Внизу появились кнопочки, выбери нужную и нажми на нее.";}
 			else
