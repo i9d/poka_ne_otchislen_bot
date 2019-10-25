@@ -27,6 +27,12 @@ const CMD_SECOND = '2курс';
 const CMD_SBS701 = 'СБС-701';
 const CMD_SBB701 = 'СББ-701';
 const CMD_SMB701 = 'СМБ-701';
+const CMD_PN = 'ПН';
+const CMD_VT = 'ВТ';
+const CMD_SR = 'СР';
+const CMD_CT = 'ЧТ';
+const CMD_PT = 'ПТ';
+const CMD_SB = 'СБ';
 $group = '2';
 
 function getBtn($label, $color, $payload = '') {
@@ -165,17 +171,9 @@ $app->post('/', function() use($app) {
 			$kbd = [
 				 'one_time' => true,
 				 'buttons' => [
-				 [
-						getBtn("ПН", COLOR_PRIMARY, CMD_PN),
-				 		getBtn("ВТ", COLOR_PRIMARY, CMD_VT),
-						getBtn("СР", COLOR_PRIMARY, CMD_SR)
-						],
-						[
-						getBtn("ЧТ", COLOR_PRIMARY, CMD_CT),
-						getBtn("ПТ", COLOR_PRIMARY, CMD_PT),
-						getBtn("СБ", COLOR_PRIMARY, CMD_SB)],[
-						getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)
-				 	      ]
+				 [getBtn("ПН", COLOR_PRIMARY, CMD_PN), getBtn("ВТ", COLOR_PRIMARY, CMD_VT), getBtn("СР", COLOR_PRIMARY, CMD_SR)],
+				 [getBtn("ЧТ", COLOR_PRIMARY, CMD_CT), getBtn("ПТ", COLOR_PRIMARY, CMD_PT), getBtn("СБ", COLOR_PRIMARY, CMD_SB)],
+				 [getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 				 ];
 				 
 				 				 $send_message = 'Группа СББ';
