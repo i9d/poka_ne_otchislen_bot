@@ -4,7 +4,7 @@
 function schedule($group, $day)
 {
 	$string = '';
-	$day = 'ПН';
+	//$day = 'ПН';
 	//$group = 3;
 	
 	$day_arr = array('ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ');
