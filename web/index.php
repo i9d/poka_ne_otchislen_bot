@@ -101,23 +101,23 @@ $app->post('/', function() use($app) {
 			$kbd = [
 				 'one_time' => false,
 				 'buttons' => [
-					 [getBtn("Покажи мой ID", COLOR_PRIMARY, CMD_ID), getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
+					 [getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
 					 [getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 				 ]
 			 ];
-			 sendmessage($user_id, 'Дарова', $kbd);
+			 
 				switch($payload)
-				{
-					case CMD_ID:
-						$send_message = "Ваш id {$user_id}";
-						break;
-					
+				{					
 					case CMD_ANEKDOT:
-						$send_message = anekdot();
+						sendmessage($user_id, anekdot(), $kbd);
 						break;
 					
 					case CMD_WEATHER:
-						$send_message = weather();
+						sendmessage($user_id, weather(), $kbd);
+						break;
+						
+					case CMD_MAIN:
+						sendmessage($user_id, 'Вы в главном меню', $kbd);
 						break;
 						
 					case CMD_SCHEDULE:
@@ -127,7 +127,6 @@ $app->post('/', function() use($app) {
 							[getBtn("СБС-701", COLOR_PRIMARY, CMD_SBS701), getBtn("СББ-701", COLOR_PRIMARY, CMD_SBB701), getBtn("СМБ-701", COLOR_PRIMARY, CMD_SMB701)],
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
-						//$send_message = 'Выберите группу:';
 						sendmessage($user_id, 'Выберите группу:', $kbd);
 						break;
 						
@@ -142,7 +141,6 @@ $app->post('/', function() use($app) {
 						]];
 						//$send_message = 'Выберите день недели:';
 						sendmessage($user_id, 'Выберите день недели:', $kbd);
-						$group = 2;
 						break;
 						
 						
@@ -171,19 +169,84 @@ $app->post('/', function() use($app) {
 						break;	
 						
 					
-	
+					
+					/*__________________СБС__________________*/
 					case SBS_PN:
 						sendmessage($user_id, schedule(2,'ПН'), $kbd);
 						break;
 						
 					case SBS_VT:
-						$send_message = schedule(2,'ВТ');
+						sendmessage($user_id, schedule(2,'ВТ'), $kbd);
 						break;	
 						
-					
+					case SBS_SR:
+						sendmessage($user_id, schedule(2,'СР'), $kbd);
+						break;
+						
+					case SBS_CT:
+						sendmessage($user_id, schedule(2,'ЧТ'), $kbd);
+						break;	
+						
+					case SBS_PT:
+						sendmessage($user_id, schedule(2,'ПТ'), $kbd);
+						break;
+						
+					case SBS_SB:
+						sendmessage($user_id, schedule(2,'СБ'), $kbd);
+						break;	
+						
+						
+						
+					/*__________________СББ__________________*/
+					case SBB_PN:
+						sendmessage($user_id, schedule(3,'ПН'), $kbd);
+						break;
+
+					case SBB_VT:
+						sendmessage($user_id, schedule(3,'ПН'), $kbd);
+						break;
+
+					case SBB_SR:
+						sendmessage($user_id, schedule(3,'ПН'), $kbd);
+						break;
+
+					case SBB_CT:
+						sendmessage($user_id, schedule(3,'ПН'), $kbd);
+						break;
+
+					case SBB_PT:
+						sendmessage($user_id, schedule(3,'ПН'), $kbd);
+						break;
+
+					case SBB_SB:
+						sendmessage($user_id, schedule(3,'СБ'), $kbd);
+						break;						
 					
 			
 						
+					/*__________________СМБ__________________*/
+					case SMB_PN:
+						sendmessage($user_id, schedule(4,'ПН'), $kbd);
+						break;
+						
+					case SMB_VT:
+						sendmessage($user_id, schedule(4,'ВТ'), $kbd);
+						break;
+						
+					case SMB_SR:
+						sendmessage($user_id, schedule(4,'СР'), $kbd);
+						break;
+					case SMB_CT:
+						sendmessage($user_id, schedule(4,'ЧТ'), $kbd);
+						break;
+
+					case SMB_PT:
+						sendmessage($user_id, schedule(4,'ПТ'), $kbd);
+						break;
+
+					case SMB_SB:
+						sendmessage($user_id, schedule(4,'СБ'), $kbd);
+						break;						
 						
 						
 					default:
