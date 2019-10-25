@@ -60,8 +60,8 @@ function schedule($group, $day)
 		}
 		$str++;
 	} 
-	if($string === Null)
-	{$string .= "Пар нет";}
+	if($string === $time . "\n" . $lesson . "\n")
+	{$string .= "Пар нет &#128526; &#128526; &#128526;";}
 	return $string;
 	
 }
