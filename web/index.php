@@ -57,7 +57,7 @@ function weather() {
 
 
 
-function sendmessage($user_id, $message, $keyboard) {
+function sendmessage_kbd($user_id, $message, $keyboard) {
 	$request_params = array(
 		'user_id' => $user_id, 
 		'message' => $message, 
@@ -69,7 +69,26 @@ function sendmessage($user_id, $message, $keyboard) {
 	file_get_contents('https://api.vk.com/method/messages.send?'. $get_params); 
 }
 
-function sendmessage_withoutkbd($user_id, $message){}
+function sendmessage($user_id, $message) {
+	$request_params = array(
+		'user_id' => $user_id, 
+		'message' => $message, 
+		'access_token' => getenv('VK_TOKEN'),
+		'v' => '5.69',
+		//'keyboard' => json_encode($keyboard, JSON_UNESCAPED_UNICODE)
+	);
+	$get_params = http_build_query($request_params); 
+	file_get_contents('https://api.vk.com/method/messages.send?'. $get_params); 
+	
+	
+	
+	
+	
+}
+
+
+
+
 $app->post('/', function() use($app) {
 	$data = json_decode(file_get_contents('php://input'));
 	if(!$data)
@@ -121,7 +140,7 @@ $app->post('/', function() use($app) {
 								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 										]
 							];
-						sendmessage($user_id, 'Вы в главном меню', $kbd);
+						sendmessage_kbd($user_id, 'Вы в главном меню', $kbd);
 						break;
 						
 					case CMD_SCHEDULE:
@@ -131,7 +150,7 @@ $app->post('/', function() use($app) {
 							[getBtn("СБС-701", COLOR_PRIMARY, CMD_SBS701), getBtn("СББ-701", COLOR_PRIMARY, CMD_SBB701), getBtn("СМБ-701", COLOR_PRIMARY, CMD_SMB701)],
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
-						sendmessage($user_id, 'Выберите группу:', $kbd);
+						sendmessage_kbd($user_id, 'Выберите группу:', $kbd);
 						break;
 						
 					/*__________________НИЖЕ МЯСО__________________*/
@@ -144,7 +163,7 @@ $app->post('/', function() use($app) {
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
 						//$send_message = 'Выберите день недели:';
-						sendmessage($user_id, 'Выберите день недели:', $kbd);
+						sendmessage_kbd($user_id, 'Выберите день недели:', $kbd);
 						break;
 						
 						
@@ -156,8 +175,7 @@ $app->post('/', function() use($app) {
 							[getBtn("ЧТ", COLOR_PRIMARY, SBB_CT), getBtn("ПТ", COLOR_PRIMARY, SBB_PT), getBtn("СБ", COLOR_PRIMARY, SBB_SB)],
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
-						sendmessage($user_id, 'Выберите день недели:', $kbd);
-						$group = 3;
+						sendmessage_kbd($user_id, 'Выберите день недели:', $kbd);
 						break;
 						
 						
@@ -169,141 +187,113 @@ $app->post('/', function() use($app) {
 							[getBtn("ЧТ", COLOR_PRIMARY, SMB_CT), getBtn("ПТ", COLOR_PRIMARY, SMB_PT), getBtn("СБ", COLOR_PRIMARY, SMB_SB)],
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
-						sendmessage($user_id, 'Выберите день недели:', $kbd);
+						sendmessage_kbd($user_id, 'Выберите день недели:', $kbd);
 						break;	
 						
 					
 					
 					/*__________________СБС__________________*/
 					case SBS_PN:
-						sendmessage($user_id, schedule(2,'ПН'), $kbd);
+						sendmessage($user_id, schedule(2,'ПН'));
 						break;
 						
 					case SBS_VT:
-						sendmessage($user_id, schedule(2,'ВТ'), $kbd);
+						sendmessage($user_id, schedule(2,'ВТ'));
 						break;	
 						
 					case SBS_SR:
-						sendmessage($user_id, schedule(2,'СР'), $kbd);
+						sendmessage($user_id, schedule(2,'СР'));
 						break;
 						
 					case SBS_CT:
-						sendmessage($user_id, schedule(2,'ЧТ'), $kbd);
+						sendmessage($user_id, schedule(2,'ЧТ'));
 						break;	
 						
 					case SBS_PT:
-						sendmessage($user_id, schedule(2,'ПТ'), $kbd);
+						sendmessage($user_id, schedule(2,'ПТ'));
 						break;
 						
 					case SBS_SB:
-						sendmessage($user_id, schedule(2,'СБ'), $kbd);
+						sendmessage($user_id, schedule(2,'СБ'));
 						break;	
 						
 						
 						
 					/*__________________СББ__________________*/
 					case SBB_PN:
-						sendmessage($user_id, schedule(3,'ПН'), $kbd);
+						sendmessage($user_id, schedule(3,'ПН'));
 						break;
 
 					case SBB_VT:
-						sendmessage($user_id, schedule(3,'ПН'), $kbd);
+						sendmessage($user_id, schedule(3,'ПН'));
 						break;
 
 					case SBB_SR:
-						sendmessage($user_id, schedule(3,'ПН'), $kbd);
+						sendmessage($user_id, schedule(3,'ПН'));
 						break;
 
 					case SBB_CT:
-						sendmessage($user_id, schedule(3,'ПН'), $kbd);
+						sendmessage($user_id, schedule(3,'ПН'));
 						break;
 
 					case SBB_PT:
-						sendmessage($user_id, schedule(3,'ПН'), $kbd);
+						sendmessage($user_id, schedule(3,'ПН'));
 						break;
 
 					case SBB_SB:
-						sendmessage($user_id, schedule(3,'СБ'), $kbd);
+						sendmessage($user_id, schedule(3,'СБ'));
 						break;						
 					
 			
 						
 					/*__________________СМБ__________________*/
 					case SMB_PN:
-						sendmessage($user_id, schedule(4,'ПН'), $kbd);
+						sendmessage($user_id, schedule(4,'ПН'));
 						break;
 						
 					case SMB_VT:
-						sendmessage($user_id, schedule(4,'ВТ'), $kbd);
+						sendmessage($user_id, schedule(4,'ВТ'));
 						break;
 						
 					case SMB_SR:
-						sendmessage($user_id, schedule(4,'СР'), $kbd);
+						sendmessage($user_id, schedule(4,'СР'));
 						break;
 					case SMB_CT:
-						sendmessage($user_id, schedule(4,'ЧТ'), $kbd);
+						sendmessage($user_id, schedule(4,'ЧТ'));
 						break;
 
 					case SMB_PT:
-						sendmessage($user_id, schedule(4,'ПТ'), $kbd);
+						sendmessage($user_id, schedule(4,'ПТ'));
 						break;
 
 					case SMB_SB:
-						sendmessage($user_id, schedule(4,'СБ'), $kbd);
+						sendmessage($user_id, schedule(4,'СБ'));
 						break;						
 						
 						
 					default:
 						$kbd = [
+							'one_time' => false,
+							'buttons' => [
+								[getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
+								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
+										]
+							];
+						sendmessage_kbd($user_id, "{$user_name},я не очень умный бот, поэтому не понимаю, что ты пишешь. Используй кнопки", $kbd);
+						break;
+				}
+			if($received_message == 'Начать')
+			{
+				$kbd = [
 							'one_time' => true,
 							'buttons' => [
 								[getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
 								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 										]
 							];
-						sendmessage($user_id, "{$user_name},я не очень умный бот, поэтому не понимаю, что ты пишешь. Используй кнопки", $kbd);
-						break;
-				}
-				/*
-				if($payload === SBS_PN) 
-				{
-				//	$send_message = schedule($group,'ПН');
-					sendmessage($user_id, schedule($group,'ПН'), $kbd);
-					
-				}
-			 */
-			 
-			 
-				//$send_message = schedule(0,0);
-			// }
-		/*	elseif ($payload === CMD_SECOND) {
-				 $kbd = [
-				 'one_time' => true,
-				 'buttons' => [
-						 [
-						 getBtn("СБС-701", COLOR_PRIMARY, CMD_SBS701),
-						 getBtn("СББ-701", COLOR_PRIMARY, CMD_SBB701),
-						 getBtn("СМБ-701", COLOR_PRIMARY, CMD_SMB701),
-						// getBtn("4курс", COLOR_PRIMARY, CMD_NEXT),
-						 getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN),
-					 	]
-				 	      ]
-				 ];
-				 $send_message = 'Выберите группу:';
+						sendmessage_kbd($user_id, "Привет, {$user_name}! Я супер крутой бот 2999! Внизу появились кнопочки, выбери нужную и нажми на нее.", $kbd);
 			}
-			elseif ($payload === CMD_SBS701) {$group=2; week();}//{$send_message = schedule(2,0);}
-			elseif ($payload === CMD_SBB701) {$group=3;	week();}//{$send_message = schedule(3,0);}
-			elseif ($payload === CMD_SMB701) {$group=4;	week();}//{$send_message = schedule(4,0);}
-			elseif ($payload === CMD_MAIN) {$send_message = 'Вы в главном меню';}*/
-	/*		elseif($payload === CMD_PN) {$send_message = schedule($group,0);}
-			elseif($payload === CMD_VT) {$send_message = schedule($group,1);}
-			elseif($payload === CMD_SR) {$send_message = schedule($group,2);}
-			elseif($payload === CMD_CT) {$send_message = schedule($group,3);}
-			elseif($payload === CMD_PT) {$send_message = schedule($group,4);}
-			elseif($payload === CMD_SB) {$send_message = schedule($group,5);}
-			*/
-			if($received_message == 'Начать')
-			{$send_message = "Привет, {$user_name}! Я супер крутой бот 2999! Внизу появились кнопочки, выбери нужную и нажми на нее.";}
+			
 			
 			
 			//sendmessage($user_id, $send_message, $kbd);
