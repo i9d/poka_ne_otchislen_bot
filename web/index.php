@@ -173,7 +173,7 @@ $app->post('/', function() use($app) {
 					
 	
 					case SBS_PN:
-						sendmessage($user_id, schedule($group,'ПН'), $kbd);
+						sendmessage($user_id, schedule(2,'ПН'), $kbd);
 						break;
 						
 					case SBS_VT:
