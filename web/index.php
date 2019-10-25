@@ -168,13 +168,13 @@ $app->post('/', function() use($app) {
 				 [
 						getBtn("ПН", COLOR_PRIMARY, CMD_PN),
 				 		getBtn("ВТ", COLOR_PRIMARY, CMD_VT),
-						getBtn("СР", COLOR_PRIMARY, CMD_SR),
-						],[
+						getBtn("СР", COLOR_PRIMARY, CMD_SR)
+						],
+						[
 						getBtn("ЧТ", COLOR_PRIMARY, CMD_CT),
 						getBtn("ПТ", COLOR_PRIMARY, CMD_PT),
-						getBtn("СБ", COLOR_PRIMARY, CMD_SB),],[
-						getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN),
-						 
+						getBtn("СБ", COLOR_PRIMARY, CMD_SB)],[
+						getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)
 				 	      ]
 				 ];
 				 
