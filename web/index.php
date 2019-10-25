@@ -126,7 +126,7 @@ $app->post('/', function() use($app) {
 			 if ($payload === CMD_ID) {$send_message = "Ваш id {$user_id}";}
 			 elseif ($payload === CMD_SCHEDULE) {
 				 $kbd = [
-				 'one_time' => false,
+				 'one_time' => true,
 				 'buttons' => [
 						 [
 						 //getBtn("1курс", COLOR_PRIMARY, CMD_NEXT),
@@ -145,7 +145,7 @@ $app->post('/', function() use($app) {
 			elseif ($payload === CMD_WEATHER) {$send_message = weather();}
 			elseif ($payload === CMD_SECOND) {
 				 $kbd = [
-				 'one_time' => false,
+				 'one_time' => true,
 				 'buttons' => [
 						 [
 						 getBtn("СБС-701", COLOR_PRIMARY, CMD_SBS701),
@@ -163,7 +163,7 @@ $app->post('/', function() use($app) {
 			
 			
 			$kbd = [
-				 'one_time' => false,
+				 'one_time' => true,
 				 'buttons' => [
 				 [
 						getBtn("ПН", COLOR_PRIMARY, CMD_PN),
@@ -191,8 +191,6 @@ $app->post('/', function() use($app) {
 			elseif($payload === CMD_PT) {$send_message = schedule($group,4);}
 			elseif($payload === CMD_SB) {$send_message = schedule($group,5);}
 			
-			elseif($user_id == '272968093')
-			{$send_message = 'вышел отсудава розбiйник';}
 			elseif($received_message == 'Начать')
 			{$send_message = "Привет, {$user_name}! Я супер крутой бот 2999! Внизу появились кнопочки, выбери нужную и нажми на нее.";}
 			else
