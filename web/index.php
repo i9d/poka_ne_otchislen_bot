@@ -162,10 +162,6 @@ $app->post('/', function() use($app) {
 			elseif ($payload === CMD_SBB701) {//$group=3;	
 			
 			
-			
-							 				 $send_message = 'Гагага';
-			
-			/*
 			$kbd = [
 				 'one_time' => false,
 				 'buttons' => [
@@ -182,7 +178,7 @@ $app->post('/', function() use($app) {
 				 ];
 				 
 				 				 $send_message = 'Группа СББ';
-				 */
+				 
 			
 			
 			}//{$send_message = schedule(3,0);}
