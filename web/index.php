@@ -68,6 +68,8 @@ function sendmessage($user_id, $message, $keyboard) {
 	$get_params = http_build_query($request_params); 
 	file_get_contents('https://api.vk.com/method/messages.send?'. $get_params); 
 }
+
+function sendmessage_withoutkbd($user_id, $message){}
 $app->post('/', function() use($app) {
 	$data = json_decode(file_get_contents('php://input'));
 	if(!$data)
@@ -104,11 +106,11 @@ $app->post('/', function() use($app) {
 				{		
 
 					case CMD_ANEKDOT:
-						sendmessage($user_id, anekdot(), $kbd);
+						sendmessage($user_id, anekdot());
 						break;
 					
 					case CMD_WEATHER:
-						sendmessage($user_id, weather(), $kbd);
+						sendmessage($user_id, weather());
 						break;
 						
 					case CMD_MAIN:
