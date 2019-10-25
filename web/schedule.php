@@ -5,7 +5,7 @@ function schedule($group, $day)
 {
 	$string = '';
 	$day = 'ПН';
-	$group = 3;
+	//$group = 3;
 	
 	$day_arr = array('ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ');
 	$indexOfDayArr = array_search($day, $day_arr);  

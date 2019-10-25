@@ -23,6 +23,7 @@ const CMD_ID = 'ID';
 const CMD_SCHEDULE = 'SCHEDULE';
 const CMD_ANEKDOT = 'ANEKDOT';
 const CMD_WEATHER = 'WEATHER';
+const CMD_SECOND = '2курс';
 
 function getBtn($label, $color, $payload = '') {
     return [
@@ -103,27 +104,40 @@ $app->post('/', function() use($app) {
 			 ];
 			 if ($payload === CMD_ID) {$send_message = "Ваш id {$user_id}";}
 			 elseif ($payload === CMD_SCHEDULE) {
-				/* $kbd = [
+				 $kbd = [
 				 'one_time' => false,
 				 'buttons' => [
 						 [
-						 getBtn("1курс", COLOR_PRIMARY, CMD_NEXT),
-				 		 getBtn("2курс", COLOR_PRIMARY, CMD_NEXT),
-						 getBtn("3курс", COLOR_PRIMARY, CMD_NEXT),
-						 getBtn("4курс", COLOR_PRIMARY, CMD_NEXT),
+						 //getBtn("1курс", COLOR_PRIMARY, CMD_NEXT),
+				 		// getBtn("2курс", COLOR_PRIMARY, CMD_NEXT),
+						 getBtn("3курс", COLOR_PRIMARY, CMD_SECOND),
+						// getBtn("4курс", COLOR_PRIMARY, CMD_NEXT),
 						 getBtn("Главное меню", COLOR_DEFAULT, CMD_NEXT),
 					 	]
 				 	      ]
-				 ];*/
-				// $send_message = 'Написано же, СКОРО. Чего ты жмешь сюда? Теперь бот сломан';
+				 ];
+				 $send_message = 'Выберите курс:';
 				
-				$send_message = schedule(0,0);
-				
-				
-				
+				//$send_message = schedule(0,0);
 			 }
 			elseif ($payload === CMD_ANEKDOT) {$send_message = anekdot();}
 			elseif ($payload === CMD_WEATHER) {$send_message = weather();}
+			elseif ($payload === CMD_SECOND) {
+				 $kbd = [
+				 'one_time' => false,
+				 'buttons' => [
+						 [
+						 //getBtn("1курс", COLOR_PRIMARY, CMD_NEXT),
+				 		// getBtn("2курс", COLOR_PRIMARY, CMD_NEXT),
+						 getBtn("СББ-701", COLOR_PRIMARY, CMD_SBB701),
+						// getBtn("4курс", COLOR_PRIMARY, CMD_NEXT),
+						 getBtn("Главное меню", COLOR_DEFAULT, CMD_NEXT),
+					 	]
+				 	      ]
+				 ];
+				 $send_message = 'Выберите группу:';
+			}
+			elseif ($payload === CMD_SBB701) {$send_message = schedule(3,0);}
 
 			
 			elseif($user_id == '272968093')
