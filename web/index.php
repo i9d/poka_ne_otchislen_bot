@@ -163,7 +163,7 @@ $app->post('/', function() use($app) {
 			
 			
 			
-			
+							 				 $send_message = 'Гагага';
 			
 			
 			$kbd = [
@@ -181,7 +181,7 @@ $app->post('/', function() use($app) {
 				 	      ]
 				 ];
 				 
-				 
+				 				 $send_message = 'Группа СББ';
 				 
 			
 			
