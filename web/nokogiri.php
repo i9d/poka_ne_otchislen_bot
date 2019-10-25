@@ -301,41 +301,5 @@ class nokogiri implements IteratorAggregate{
 	}
 	
 }
-//*[@id="content"]/div/div/article/div/font/table/tbody/tr[5]/td[2]
-function cell($tab, $x, $y)
-{
-	if(is_array($tab->toArray()[$x]['td'][$y]["#text"]))
-	{
-		$content_count = count($tab->toArray()[$x]['td'][$y]["#text"]);
-	}
-	else
-	{
-		$content_count = 0;
-	}
-	if ($content_count>1)
-	{
-	for ($i = 0; $i < $content_count; $i++)
-	{
-		$str .= $tab->toArray()[$x]['td'][$y]["#text"][$i]; //+ '\n';
-		//$str .= '\n';
-	}
-	return $str;
-	}
-	return $tab->toArray()[$x]['td'][$y]["#text"][0];
-}
-
-function colspan($tab, $x, $y)
-{
-	$span = 0;
-//	$size = count($tab->toArray()[$x]['td']);
-	for ($i = 0; $i < $y; $i++)
-	{
-		if ($tab->toArray()[$x]['td'][$i]["colspan"][0] > 0)
-		{
-			$span++;
-		}
-	}
-	return $span;
-}
 
 
