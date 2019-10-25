@@ -162,7 +162,6 @@ $app->post('/', function() use($app) {
 							[getBtn("ЧТ", COLOR_PRIMARY, SBS_CT), getBtn("ПТ", COLOR_PRIMARY, SBS_PT), getBtn("СБ", COLOR_PRIMARY, SBS_SB)],
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
-						//$send_message = 'Выберите день недели:';
 						sendmessage_kbd($user_id, 'Выберите день недели:', $kbd);
 						break;
 						
@@ -171,7 +170,7 @@ $app->post('/', function() use($app) {
 						$kbd = [
 							'one_time' => false,
 							'buttons' => [
-							[getBtn("ПН", COLOR_PRIMARY, SBS_PN), getBtn("ВТ", COLOR_PRIMARY, SBB_VT), getBtn("СР", COLOR_PRIMARY, SBB_SR)],
+							[getBtn("ПН", COLOR_PRIMARY, SBB_PN), getBtn("ВТ", COLOR_PRIMARY, SBB_VT), getBtn("СР", COLOR_PRIMARY, SBB_SR)],
 							[getBtn("ЧТ", COLOR_PRIMARY, SBB_CT), getBtn("ПТ", COLOR_PRIMARY, SBB_PT), getBtn("СБ", COLOR_PRIMARY, SBB_SB)],
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
