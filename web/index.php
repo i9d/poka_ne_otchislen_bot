@@ -27,6 +27,7 @@ const CMD_SECOND = '2курс';
 const CMD_SBS701 = 'СБС-701';
 const CMD_SBB701 = 'СББ-701';
 const CMD_SMB701 = 'СМБ-701';
+$group = '2';
 
 function getBtn($label, $color, $payload = '') {
     return [
@@ -68,7 +69,24 @@ function sendmessage($user_id, $message, $keyboard) {
 	file_get_contents('https://api.vk.com/method/messages.send?'. $get_params); 
 }
 
-
+function week()
+{
+	$kbd = [
+				 'one_time' => false,
+				 'buttons' => [
+				 [
+						getBtn("ПН", COLOR_PRIMARY, CMD_PN),
+				 		getBtn("ВТ", COLOR_PRIMARY, CMD_VT),
+						getBtn("СР", COLOR_PRIMARY, CMD_SR),
+						getBtn("ЧТ", COLOR_PRIMARY, CMD_CT),
+						getBtn("ПТ", COLOR_PRIMARY, CMD_PT),
+						getBtn("СБ", COLOR_PRIMARY, CMD_SB),
+						getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN),
+						 ]
+				 	      ]
+				 ];
+	
+}
 $app->post('/', function() use($app) {
 	$data = json_decode(file_get_contents('php://input'));
 	if(!$data)
@@ -140,11 +158,16 @@ $app->post('/', function() use($app) {
 				 ];
 				 $send_message = 'Выберите группу:';
 			}
-			elseif ($payload === CMD_SBS701) {$send_message = schedule(2,0);}
-			elseif ($payload === CMD_SBB701) {$send_message = schedule(3,0);}
-			elseif ($payload === CMD_SMB701) {$send_message = schedule(4,0);}
+			elseif ($payload === CMD_SBS701) {$group=2; week();}//{$send_message = schedule(2,0);}
+			elseif ($payload === CMD_SBB701) {$group=3;	week();}//{$send_message = schedule(3,0);}
+			elseif ($payload === CMD_SMB701) {$group=4;	week();}//{$send_message = schedule(4,0);}
 			elseif ($payload === CMD_MAIN) {$send_message = 'Вы в главном меню';}
-
+			elseif($payload === CMD_PN) {$send_message = schedule($group,0);}
+			elseif($payload === CMD_VT) {$send_message = schedule($group,1);}
+			elseif($payload === CMD_SR) {$send_message = schedule($group,2);}
+			elseif($payload === CMD_CT) {$send_message = schedule($group,3);}
+			elseif($payload === CMD_PT) {$send_message = schedule($group,4);}
+			elseif($payload === CMD_SB) {$send_message = schedule($group,5);}
 			
 			elseif($user_id == '272968093')
 			{$send_message = 'вышел отсудава розбiйник';}
