@@ -98,16 +98,11 @@ $app->post('/', function() use($app) {
 			$received_message = $data->object->body;
 			$payload = $data->object->payload;
 			if ($payload) { $payload = json_decode($payload, true); }
-			$kbd = [
-				 'one_time' => false,
-				 'buttons' => [
-					 [getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
-					 [getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
-				 ]
-			 ];
+			
 			 
 				switch($payload)
-				{					
+				{		
+
 					case CMD_ANEKDOT:
 						sendmessage($user_id, anekdot(), $kbd);
 						break;
@@ -117,6 +112,13 @@ $app->post('/', function() use($app) {
 						break;
 						
 					case CMD_MAIN:
+						$kbd = [
+							'one_time' => true,
+							'buttons' => [
+								[getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
+								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
+										]
+							];
 						sendmessage($user_id, 'Вы в главном меню', $kbd);
 						break;
 						
