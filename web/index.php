@@ -105,7 +105,7 @@ $app->post('/', function() use($app) {
 					 [getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 				 ]
 			 ];
-			 
+			 sendmessage($user_id, 'Дарова', $kbd);
 				switch($payload)
 				{
 					case CMD_ID:
@@ -127,7 +127,8 @@ $app->post('/', function() use($app) {
 							[getBtn("СБС-701", COLOR_PRIMARY, CMD_SBS701), getBtn("СББ-701", COLOR_PRIMARY, CMD_SBB701), getBtn("СМБ-701", COLOR_PRIMARY, CMD_SMB701)],
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
-						$send_message = 'Выберите группу:';
+						//$send_message = 'Выберите группу:';
+						sendmessage($user_id, 'Выберите группу:', $kbd);
 						break;
 						
 					/*__________________НИЖЕ МЯСО__________________*/
@@ -139,8 +140,8 @@ $app->post('/', function() use($app) {
 							[getBtn("ЧТ", COLOR_PRIMARY, SBS_CT), getBtn("ПТ", COLOR_PRIMARY, SBS_PT), getBtn("СБ", COLOR_PRIMARY, SBS_SB)],
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
-						$send_message = 'Выберите день недели:';
-						sendmessage($user_id, $send_message, $kbd);
+						//$send_message = 'Выберите день недели:';
+						sendmessage($user_id, 'Выберите день недели:', $kbd);
 						$group = 2;
 						break;
 						
@@ -153,8 +154,8 @@ $app->post('/', function() use($app) {
 							[getBtn("ЧТ", COLOR_PRIMARY, SBB_CT), getBtn("ПТ", COLOR_PRIMARY, SBB_PT), getBtn("СБ", COLOR_PRIMARY, SBB_SB)],
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
-						$send_message = 'Выберите день недели:';
-						sendmessage($user_id, $send_message, $kbd);
+						//$send_message = 'Выберите день недели:';
+						sendmessage($user_id, 'Выберите день недели:', $kbd);
 						$group = 3;
 						break;
 						
@@ -194,8 +195,8 @@ $app->post('/', function() use($app) {
 				
 				if($payload === SBS_PN) 
 				{
-					$send_message = schedule($group,'ПН');
-					sendmessage($user_id, $send_message, $kbd);
+				//	$send_message = schedule($group,'ПН');
+					sendmessage($user_id, schedule($group,'ПН'), $kbd);
 					
 				}
 			 
@@ -233,7 +234,7 @@ $app->post('/', function() use($app) {
 			{$send_message = "Привет, {$user_name}! Я супер крутой бот 2999! Внизу появились кнопочки, выбери нужную и нажми на нее.";}
 			
 			
-			sendmessage($user_id, $send_message, $kbd);
+			//sendmessage($user_id, $send_message, $kbd);
 			return('OK');
 			break;
 		default:
