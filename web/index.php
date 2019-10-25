@@ -108,7 +108,7 @@ $app->post('/', function() use($app) {
 			 
 				switch($payload)
 				{
-					case 'CMD_ID':
+					case CMD_ID:
 						$send_message = "Ваш id {$user_id}";
 						break;
 					
