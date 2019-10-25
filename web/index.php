@@ -159,7 +159,7 @@ $app->post('/', function() use($app) {
 				 $send_message = 'Выберите группу:';
 			}
 			elseif ($payload === CMD_SBS701) {$group=2; week();}//{$send_message = schedule(2,0);}
-			elseif ($payload === CMD_SBB701) {$group=3;	
+			elseif ($payload === CMD_SBB701) {//$group=3;	
 			
 			
 			
