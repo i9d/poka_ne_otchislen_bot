@@ -127,9 +127,9 @@ $app->post('/', function() use($app) {
 				 'one_time' => false,
 				 'buttons' => [
 						 [
-						 //getBtn("1курс", COLOR_PRIMARY, CMD_NEXT),
-				 		// getBtn("2курс", COLOR_PRIMARY, CMD_NEXT),
+						 getBtn("СБС-701", COLOR_PRIMARY, CMD_SBS701),
 						 getBtn("СББ-701", COLOR_PRIMARY, CMD_SBB701),
+						 getBtn("СМБ-701", COLOR_PRIMARY, CMD_SМB701),
 						// getBtn("4курс", COLOR_PRIMARY, CMD_NEXT),
 						 getBtn("Главное меню", COLOR_DEFAULT, CMD_NEXT),
 					 	]
@@ -137,7 +137,9 @@ $app->post('/', function() use($app) {
 				 ];
 				 $send_message = 'Выберите группу:';
 			}
+			elseif ($payload === CMD_SBS701) {$send_message = schedule(2,0);}
 			elseif ($payload === CMD_SBB701) {$send_message = schedule(3,0);}
+			elseif ($payload === CMD_SMB701) {$send_message = schedule(4,0);}
 
 			
 			elseif($user_id == '272968093')
