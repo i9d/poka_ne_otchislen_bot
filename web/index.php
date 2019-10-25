@@ -252,6 +252,13 @@ $app->post('/', function() use($app) {
 						
 						
 					default:
+						$kbd = [
+							'one_time' => true,
+							'buttons' => [
+								[getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
+								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
+										]
+							];
 						sendmessage($user_id, "{$user_name},я не очень умный бот, поэтому не понимаю, что ты пишешь. Используй кнопки", $kbd);
 						break;
 				}
