@@ -112,15 +112,15 @@ $app->post('/', function() use($app) {
 						$send_message = "Ваш id {$user_id}";
 						break;
 					
-					case 'CMD_ANEKDOT':
+					case CMD_ANEKDOT:
 						$send_message = anekdot();
 						break;
 					
-					case 'CMD_WEATHER':
+					case CMD_WEATHER:
 						$send_message = weather();
 						break;
 						
-					case 'CMD_SCHEDULE':
+					case CMD_SCHEDULE:
 						$kbd = [
 						'one_time' => true,
 						'buttons' => [
@@ -131,7 +131,7 @@ $app->post('/', function() use($app) {
 						break;
 						
 					/*__________________НИЖЕ МЯСО__________________*/
-					case 'CMD_SBS701':
+					case CMD_SBS701:
 						$kbd = [
 							'one_time' => false,
 							'buttons' => [
@@ -143,7 +143,7 @@ $app->post('/', function() use($app) {
 						break;
 						
 						
-					case 'CMD_SBB701':
+					case CMD_SBB701:
 						$kbd = [
 							'one_time' => false,
 							'buttons' => [
@@ -155,7 +155,7 @@ $app->post('/', function() use($app) {
 						break;
 						
 						
-					case 'CMD_SMB701':
+					case CMD_SMB701:
 						$kbd = [
 							'one_time' => false,
 							'buttons' => [
@@ -167,11 +167,11 @@ $app->post('/', function() use($app) {
 						break;	
 						
 						
-					case 'SBS_PN':
+					case SBS_PN:
 						$send_message = schedule(2,'ПН');
 						break;
 						
-					case 'SBS_VT':
+					case SBS_VT:
 						$send_message = schedule(2,'ВТ');
 						break;	
 						
