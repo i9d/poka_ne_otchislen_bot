@@ -134,7 +134,7 @@ $app->post('/', function() use($app) {
 						
 					case CMD_MAIN:
 						$kbd = [
-							'one_time' => true,
+							'one_time' => false,
 							'buttons' => [
 								[getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
 								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
@@ -225,19 +225,19 @@ $app->post('/', function() use($app) {
 						break;
 
 					case SBB_VT:
-						sendmessage($user_id, schedule(3,'ПН'));
+						sendmessage($user_id, schedule(3,'ВТ'));
 						break;
 
 					case SBB_SR:
-						sendmessage($user_id, schedule(3,'ПН'));
+						sendmessage($user_id, schedule(3,'СР'));
 						break;
 
 					case SBB_CT:
-						sendmessage($user_id, schedule(3,'ПН'));
+						sendmessage($user_id, schedule(3,'ЧТ'));
 						break;
 
 					case SBB_PT:
-						sendmessage($user_id, schedule(3,'ПН'));
+						sendmessage($user_id, schedule(3,'ПТ'));
 						break;
 
 					case SBB_SB:
@@ -285,7 +285,7 @@ $app->post('/', function() use($app) {
 			if($received_message == 'Начать')
 			{
 				$kbd = [
-							'one_time' => true,
+							'one_time' => false,
 							'buttons' => [
 								[getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
 								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
