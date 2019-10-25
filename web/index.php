@@ -181,13 +181,15 @@ $app->post('/', function() use($app) {
 						
 						
 						
-						
+					default:
+						$send_message = "{$user_name},я не очень умный бот, поэтому не понимаю, что ты пишешь. Используй кнопки";
+						break;
 				}
 			 
 			 
 			 
 				//$send_message = schedule(0,0);
-			 }
+			// }
 		/*	elseif ($payload === CMD_SECOND) {
 				 $kbd = [
 				 'one_time' => true,
@@ -214,10 +216,9 @@ $app->post('/', function() use($app) {
 			elseif($payload === CMD_PT) {$send_message = schedule($group,4);}
 			elseif($payload === CMD_SB) {$send_message = schedule($group,5);}
 			*/
-			elseif($received_message == 'Начать')
+			if($received_message == 'Начать')
 			{$send_message = "Привет, {$user_name}! Я супер крутой бот 2999! Внизу появились кнопочки, выбери нужную и нажми на нее.";}
-			else
-			{$send_message = "{$user_name},я не очень умный бот, поэтому не понимаю, что ты пишешь. Используй кнопки";}
+			
 			
 			sendmessage($user_id, $send_message, $kbd);
 			return('OK');
