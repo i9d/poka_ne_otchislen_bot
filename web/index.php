@@ -136,7 +136,7 @@ $app->post('/', function() use($app) {
 						$kbd = [
 							'one_time' => false,
 							'buttons' => [
-								[getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
+								[getBtn("Расписание", COLOR_PRIMARY, CMD_SCHEDULE)],
 								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 										]
 							];
@@ -275,7 +275,7 @@ $app->post('/', function() use($app) {
 						$kbd = [
 							'one_time' => false,
 							'buttons' => [
-								[getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
+								[getBtn("Расписание", COLOR_PRIMARY, CMD_SCHEDULE)],
 								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 										]
 							];
@@ -287,7 +287,7 @@ $app->post('/', function() use($app) {
 				$kbd = [
 							'one_time' => false,
 							'buttons' => [
-								[getBtn("&#128284;Расписание(скоро)", COLOR_NEGATIVE, CMD_SCHEDULE)],
+								[getBtn("Расписание", COLOR_PRIMARY, CMD_SCHEDULE)],
 								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 										]
 							];
