@@ -78,19 +78,13 @@ function sendmessage($user_id, $message, $keyboard) {
 function week()
 {
 	$kbd = [
-				 'one_time' => false,
+				 'one_time' => true,
 				 'buttons' => [
-				 [
-						getBtn("ПН", COLOR_PRIMARY, CMD_PN),
-				 		getBtn("ВТ", COLOR_PRIMARY, CMD_VT),
-						getBtn("СР", COLOR_PRIMARY, CMD_SR),
-						getBtn("ЧТ", COLOR_PRIMARY, CMD_CT),
-						getBtn("ПТ", COLOR_PRIMARY, CMD_PT),
-						getBtn("СБ", COLOR_PRIMARY, CMD_SB),
-						getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN),
-						 ]
-				 	      ]
-				 ];
+				 [getBtn("ПН", COLOR_PRIMARY, CMD_PN), getBtn("ВТ", COLOR_PRIMARY, CMD_VT), getBtn("СР", COLOR_PRIMARY, CMD_SR)],
+				 [getBtn("ЧТ", COLOR_PRIMARY, CMD_CT), getBtn("ПТ", COLOR_PRIMARY, CMD_PT), getBtn("СБ", COLOR_PRIMARY, CMD_SB)],
+				 [getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
+				]
+				];
 	
 }
 $app->post('/', function() use($app) {
@@ -165,23 +159,7 @@ $app->post('/', function() use($app) {
 				 $send_message = 'Выберите группу:';
 			}
 			elseif ($payload === CMD_SBS701) {$group=2; week();}//{$send_message = schedule(2,0);}
-			elseif ($payload === CMD_SBB701) {//$group=3;	
-			
-			
-			$kbd = [
-				 'one_time' => true,
-				 'buttons' => [
-				 [getBtn("ПН", COLOR_PRIMARY, CMD_PN), getBtn("ВТ", COLOR_PRIMARY, CMD_VT), getBtn("СР", COLOR_PRIMARY, CMD_SR)],
-				 [getBtn("ЧТ", COLOR_PRIMARY, CMD_CT), getBtn("ПТ", COLOR_PRIMARY, CMD_PT), getBtn("СБ", COLOR_PRIMARY, CMD_SB)],
-				 [getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
-				]
-				];
-				 
-				 				 $send_message = 'Группа СББ';
-				 
-			
-			
-			}//{$send_message = schedule(3,0);}
+			elseif ($payload === CMD_SBB701) {$group=3;	week();}//{$send_message = schedule(3,0);}
 			elseif ($payload === CMD_SMB701) {$group=4;	week();}//{$send_message = schedule(4,0);}
 			elseif ($payload === CMD_MAIN) {$send_message = 'Вы в главном меню';}
 			elseif($payload === CMD_PN) {$send_message = schedule($group,0);}
