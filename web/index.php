@@ -24,6 +24,9 @@ const CMD_SCHEDULE = 'SCHEDULE';
 const CMD_ANEKDOT = 'ANEKDOT';
 const CMD_WEATHER = 'WEATHER';
 const CMD_SECOND = '2курс';
+const CMD_SBS701 = 'СБС-701';
+const CMD_SBB701 = 'СББ-701';
+const CMD_SMB701 = 'СМБ-701';
 
 function getBtn($label, $color, $payload = '') {
     return [
@@ -129,7 +132,7 @@ $app->post('/', function() use($app) {
 						 [
 						 getBtn("СБС-701", COLOR_PRIMARY, CMD_SBS701),
 						 getBtn("СББ-701", COLOR_PRIMARY, CMD_SBB701),
-						 getBtn("СМБ-701", COLOR_PRIMARY, CMD_SМB701),
+						 getBtn("СМБ-701", COLOR_PRIMARY, CMD_SMB701),
 						// getBtn("4курс", COLOR_PRIMARY, CMD_NEXT),
 						 getBtn("Главное меню", COLOR_DEFAULT, CMD_NEXT),
 					 	]
