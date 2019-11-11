@@ -2,12 +2,19 @@
 
 function lesson_sorted($str)
 {
+	/*
 $lesson = substr($str, 0, strpos($str, ',' ));
 $position = strlen($str)-strlen($lesson)-1;	
 $str = substr($str, -$position);	
 $teacher = substr($str, 0, strpos($str, ',' ));
 $position = strlen($str)-strlen($lesson)-3;	
-$str = substr($str, -$position);	
+$str = substr($str, -$position);	*/
+
+$strmass = explode(",", $str);
+$lesson = $strmass[0];
+$teacher = $strmass[1];
+$classroom = $strmass[2];
+
 $classroom = $str;
 $sort .= "Предмет: ";
 $sort .= $lesson;
@@ -18,6 +25,9 @@ $sort .= "\n";
 $sort .= "Аудитория: ";
 $sort .= $classroom;
 //$sort .= 
+
+
+	
 	return $sort;
 }
 function schedule($group, $day)
