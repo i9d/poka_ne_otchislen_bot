@@ -10,23 +10,23 @@ $teacher = substr($str, 0, strpos($str, ',' ));
 $position = strlen($str)-strlen($lesson)-3;	
 $str = substr($str, -$position);	*/
 
-$strmass = explode(",", $str);
-$lesson = $strmass[0];
-$teacher = $strmass[1];
-$classroom = $strmass[count($strmass)-1];
-$sort .= "Предмет: ";
-$sort .= $lesson;
-$sort .= "\n";
-$sort .= "Преподаватель: ";
-$sort .= $teacher;
-$sort .= "\n";
-$sort .= "Аудитория: ";
-$sort .= $classroom;
+	$strmass = explode(",", $str);
+	$lesson = $strmass[0];
+	for($i=1; $i<count($strmass)-1; i++)
+	{
+	$teacher .= $strmass[i];
+	}
+	$classroom = $strmass[count($strmass)-1];
+	$sort .= "Предмет: ";
+	$sort .= $lesson;
+	$sort .= "\n";
+	$sort .= "Преподаватель: ";
+	$sort .= $teacher;
+	$sort .= "\n";
+	$sort .= "Аудитория: ";
+	$sort .= $classroom;
 //$sort .= 
-
-
-	
-	return $sort;
+return $sort;
 }
 function schedule($group, $day)
 {
