@@ -1,6 +1,4 @@
-<?php
-function switch_payload($payload)
-{			 
+<?php	 
 				switch($payload)
 				{		
 
@@ -161,5 +159,4 @@ function switch_payload($payload)
 						sendmessage_kbd($user_id, "{$user_name},я не очень умный бот, поэтому не понимаю, что ты пишешь. Используй кнопки", $kbd);
 						break;
 				}
-}
 ?>

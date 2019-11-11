@@ -3,7 +3,6 @@
 require('../vendor/autoload.php');
 require ('nokogiri.php');
 require ('schedule.php');
-require ('payload.php');
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -117,7 +116,8 @@ $app->post('/', function() use($app) {
 			$payload = $data->object->payload;
 			if ($payload) { $payload = json_decode($payload, true); }
 			
-				switch_payload($payload);
+			include ('payload.php');
+				//switch_payload($payload);
 			
 			if($received_message == 'Начать')
 			{
