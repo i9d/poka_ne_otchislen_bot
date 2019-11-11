@@ -2,10 +2,12 @@
 
 function lesson_sorted($str)
 {
-$lesson = substr($str, 0, strpos($str, ',' ));	
-$str = substr($str, strlen($lesson), strpos($str, ',' ));	
+$lesson = substr($str, 0, strpos($str, ',' ));
+$position = strlen($str)-strlen($lesson);	
+$str = substr($str, -$position);	
 $teacher = substr($str, 0, strpos($str, ',' ));
-$str = substr($str, strlen($teacher), strpos($str, ',' ));	
+$position = strlen($str)-strlen($lesson);	
+$str = substr($str, -$position);	
 $classroom = $str;
 $sort .= "Предмет: ";
 $sort .= $lesson;
