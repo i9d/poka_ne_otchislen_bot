@@ -156,7 +156,7 @@
 								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 										]
 							];
-						sendmessage_kbd($user_id, "{$user_name},я не очень умный бот, поэтому не понимаю, что ты пишешь. Используй кнопки", $kbd);
+						sendmessage_kbd($user_id, "", $kbd);
 						break;
 				}
 ?>
