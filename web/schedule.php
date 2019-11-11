@@ -1,11 +1,11 @@
 <?php
 
 function lesson_sorted($str)
-{/*
+{
 $lesson = substr($str, 0, strpos($str, ',' ));	
-$str = substr($str, strlen($lesson));//, strpos($str, ',' ));	
+$str = substr($str, strlen($lesson), strpos($str, ',' ));	
 $teacher = substr($str, 0, strpos($str, ',' ));
-$str = substr($str, strlen($teacher);//, strpos($str, ',' ));	
+$str = substr($str, strlen($teacher), strpos($str, ',' ));	
 $classroom = $str;
 $sort .= "Предмет: ";
 $sort .= $lesson;
@@ -15,8 +15,8 @@ $sort .= $teacher;
 $sort .= "\n";
 $sort .= "Аудитория: ";
 $sort .= $classroom;
-//$sort .= */
-	return "111";//$sort;
+//$sort .= 
+	return $sort;
 }
 function schedule($group, $day)
 {
