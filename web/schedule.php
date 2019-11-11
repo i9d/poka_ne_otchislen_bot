@@ -12,9 +12,9 @@ $str = substr($str, -$position);	*/
 
 	$strmass = explode(",", $str);
 	$lesson = $strmass[0];
-	for($i=1; $i<count($strmass)-1; i++)
+	for($i=1; $i<count($strmass)-1; $i++)
 	{
-	$teacher .= $strmass[i];
+	$teacher .= $strmass[$i];
 	}
 	$classroom = $strmass[count($strmass)-1];
 	$sort .= "Предмет: ";
