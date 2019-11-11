@@ -4,9 +4,9 @@ function lesson_sorted($str)
 {
 $lesson = substr($str, 0, strpos($str, ',' ));
 $position = strlen($str)-strlen($lesson);	
-$str = substr($str, -$position);	
+$str = substr($str, -$position)+1;	
 $teacher = substr($str, 0, strpos($str, ',' ));
-$position = strlen($str)-strlen($lesson);	
+$position = strlen($str)-strlen($lesson)+1;	
 $str = substr($str, -$position);	
 $classroom = $str;
 $sort .= "Предмет: ";
