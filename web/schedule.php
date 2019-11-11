@@ -3,17 +3,17 @@
 function lesson_sorted($str)
 {
 $lesson = substr($str, 0, strpos($str, ',' ));	
-$str = substr($str, strlen($lesson, strpos($str, ',' ));	
+$str = substr($str, strlen($lesson), strpos($str, ',' ));	
 $teacher = substr($str, 0, strpos($str, ',' ));
-$str = substr($str, strlen($lesson, strpos($str, ',' ));	
+$str = substr($str, strlen($lesson), strpos($str, ',' ));	
 $classroom = $str;
-$sort .= 'Предмет: ';
+$sort .= "Предмет: ";
 $sort .= $lesson;
-$sort .= '\n';
-$sort .= 'Преподаватель: ';
+$sort .= "\n";
+$sort .= "Преподаватель: ";
 $sort .= $teacher;
-$sort .= '\n';
-$sort .= 'Аудитория: ';
+$sort .= "\n";
+$sort .= "Аудитория: ";
 $sort .= $classroom;
 //$sort .= 
 	return $sort;
