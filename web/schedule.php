@@ -5,7 +5,7 @@ function lesson_sorted($str)
 $lesson = substr($str, 0, strpos($str, ',' ));	
 $str = substr($str, strlen($lesson), strpos($str, ',' ));	
 $teacher = substr($str, 0, strpos($str, ',' ));
-$str = substr($str, strlen($lesson), strpos($str, ',' ));	
+$str = substr($str, strlen($teacher), strpos($str, ',' ));	
 $classroom = $str;
 $sort .= "Предмет: ";
 $sort .= $lesson;
@@ -51,9 +51,9 @@ function schedule($group, $day)
 	$time = cell($tr, $str, $t);	//парсим время
 	$span = colspan($tr, $str, $group);
 	$lesson = cell($tr, $str, $group-$span);	//парсим пару
-	$lesson = lesson_sorted($lesson);
 	if($lesson !== Null)	//если  пара есть, выводим время и пару
 	{
+		$lesson = lesson_sorted($lesson);
 		$string .= $time;
 		$string .= "\n";
 		$string .= $lesson;
@@ -69,9 +69,10 @@ function schedule($group, $day)
 		$time = cell($tr, $str, $t);
 		$span = colspan($tr, $str, $group);
 		$lesson = cell($tr, $str, $group-$span);
-		$lesson = lesson_sorted($lesson);
+
 		if($lesson !== Null)
 		{
+		$lesson = lesson_sorted($lesson);
 		$string .= $time;
 		$string .= "\n";
 		$string .= $lesson;
