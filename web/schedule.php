@@ -13,7 +13,7 @@ $str = substr($str, -$position);	*/
 $strmass = explode(",", $str);
 $lesson = $strmass[0];
 $teacher = $strmass[1];
-$classroom = $strmass[count($strmass)];
+$classroom = $strmass[count($strmass)-1];
 
 $classroom = $str;
 $sort .= "Предмет: ";
