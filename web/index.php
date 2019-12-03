@@ -135,7 +135,7 @@ $app->post('/', function() use($app) {
 			
 			if($received_message == '!update')
 			{
-				//include ('backup.php');
+				include ('backup.php');
 				sendmessage($user_id, "Обновлено");
 			}
 			
