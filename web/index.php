@@ -29,6 +29,8 @@ const CMD_SBB701 = 'СББ-701';
 const CMD_SMB701 = 'СМБ-701';
 $group = '2';
 
+
+
 function getBtn($label, $color, $payload = '') {
     return [
         'action' => [
@@ -129,6 +131,12 @@ $app->post('/', function() use($app) {
 										]
 							];
 						sendmessage_kbd($user_id, "Привет, {$user_name}! Я супер крутой бот 2999! Внизу появились кнопочки, выбери нужную и нажми на нее.", $kbd);
+			}
+			
+			if($received_message == '!update')
+			{
+				include ('backup.php');
+				sendmessage($user_id, "Обновлено");
 			}
 			
 			
