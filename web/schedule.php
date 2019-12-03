@@ -1,4 +1,6 @@
 <?php
+
+require('backup.html');
 function isSiteAvailible($url) { 
 
     // Проверка правильности URL
