@@ -1,4 +1,30 @@
 <?php
+function isSiteAvailible($url) { 
+
+    // Проверка правильности URL
+    if(!filter_var($url, FILTER_VALIDATE_URL)){
+      return false;
+    }
+
+    // Инициализация cURL
+    $curlInit = curl_init($url);
+
+    // Установка параметров запроса
+    curl_setopt($curlInit,CURLOPT_CONNECTTIMEOUT,10);
+    curl_setopt($curlInit,CURLOPT_HEADER,true);
+    curl_setopt($curlInit,CURLOPT_NOBODY,true);
+    curl_setopt($curlInit,CURLOPT_RETURNTRANSFER,true);
+
+    // Получение ответа
+    $response = curl_exec($curlInit);
+
+    // закрываем CURL
+    curl_close($curlInit);
+
+    return $response ? true : false;
+  }
+
+
 
 function lesson_sorted($str)
 {
@@ -36,7 +62,14 @@ function schedule($group, $day)
 	
 	$day_arr = array('ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ');
 	$indexOfDayArr = array_search($day, $day_arr);  
+	if(isSiteAvailible('http://fkn.univer.omsk.su/academics/Schedule/schedule3_1.htm'))
+	{
 	$html = file_get_contents('http://fkn.univer.omsk.su/academics/Schedule/schedule3_1.htm');
+	}
+	else
+			   {
+	$html = file_get_contents('backup.html');
+			   }
 	$saw = new nokogiri($html);
 	$table = $saw->get('table'); 
 	$tr = $table->get('tr');
