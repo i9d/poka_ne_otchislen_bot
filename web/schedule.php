@@ -173,9 +173,9 @@ function rowspan($tab, $x, $y)
 {
 	$span = 0;
 //	$size = count($tab->toArray()[$x]['td']);
-	for ($i = 0; $i < $y; $i++)
+	for ($i = 0; $i < $x; $i++)
 	{
-		if ($tab->toArray()[$x]['td'][$i]["rowspan"][0] > 0)
+		if ($tab->toArray()[$y]['td'][$i]["rowspan"][0] > 0)
 		{
 			$span++;
 		}
