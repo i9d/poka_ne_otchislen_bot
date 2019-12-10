@@ -64,14 +64,14 @@ function schedule($group, $day)
 	
 	$day_arr = array('ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ');
 	$indexOfDayArr = array_search($day, $day_arr);  
-	//if(isSiteAvailible('http://fkn.univer.omsk.su/academics/Schedule/schedule3_1.htm'))
-	//{
+	if(isSiteAvailible('http://fkn.univer.omsk.su/academics/Schedule/schedule3_1.htm'))
+	{
 	$html = file_get_contents('http://fkn.univer.omsk.su/academics/Schedule/schedule3_1.htm');
-	//}
-	//else
-	//		   {
-	//$html = file_get_contents('backup.html');
-	//		   }
+	}
+	else
+			   {
+	$html = file_get_contents('backup.html');
+			   }
 	$saw = new nokogiri($html);
 	$table = $saw->get('table'); 
 	$tr = $table->get('tr');
