@@ -4,10 +4,12 @@
 
 					case CMD_ANEKDOT:
 						sendmessage($user_id, anekdot());
+						echo('OK');
 						break;
 					
 					case CMD_WEATHER:
 						sendmessage($user_id, weather());
+						echo('OK');
 						break;
 						
 					case CMD_MAIN:
@@ -19,6 +21,7 @@
 										]
 							];
 						sendmessage_kbd($user_id, 'Вы в главном меню', $kbd);
+						echo('OK');
 						break;
 						
 					case CMD_SCHEDULE:
@@ -29,6 +32,7 @@
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
 						sendmessage_kbd($user_id, 'Выберите группу:', $kbd);
+						echo('OK');
 						break;
 						
 					/*__________________НИЖЕ МЯСО__________________*/
@@ -41,6 +45,7 @@
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
 						sendmessage_kbd($user_id, 'Выберите день недели:', $kbd);
+						echo('OK');
 						break;
 						
 						
@@ -53,6 +58,7 @@
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
 						sendmessage_kbd($user_id, 'Выберите день недели:', $kbd);
+						echo('OK');
 						break;
 						
 						
@@ -65,6 +71,7 @@
 							[getBtn("Главное меню", COLOR_DEFAULT, CMD_MAIN)]
 						]];
 						sendmessage_kbd($user_id, 'Выберите день недели:', $kbd);
+						echo('OK');
 						break;	
 						
 					
@@ -76,6 +83,7 @@
 						
 					case SBS_VT:
 						sendmessage($user_id, schedule(2,'ВТ'));
+						
 						break;	
 						
 					case SBS_SR:
@@ -157,6 +165,7 @@
 										]
 							];
 						sendmessage_kbd($user_id, "", $kbd);
+						echo('OK');
 						break;
 				}
 ?>
