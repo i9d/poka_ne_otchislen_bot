@@ -95,8 +95,8 @@ function schedule($group, $day)
 
 	$time = cell($tr, $str, $t);	//парсим время
 	$span = colspan($tr, $str, $group);
-	$rowspan = rowspan($tr, $str, $group);
-	$lesson = cell($tr, $str-$rowspan, $group-$span);	//парсим пару
+	//$rowspan = rowspan($tr, $str, $group);
+	$lesson = cell($tr, $str-$rowspan, $group);	//парсим пару
 	if($lesson !== Null)	//если  пара есть, выводим время и пару
 	{
 		$lesson = lesson_sorted($lesson);
