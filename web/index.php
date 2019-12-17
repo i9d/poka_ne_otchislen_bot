@@ -97,7 +97,7 @@ $app->post('/', function() use($app) {
 	if(!$data)
 	if($data->secret !== getenv('VK_CONFIRMATION_CODE') && $data->type !== 'confirmation')
 	return 'invalid_token';
-	
+	echo('OK');
 	switch($data->type)
 	{
 		case 'confirmation':
