@@ -120,8 +120,12 @@ $app->post('/', function() use($app) {
 			$payload = $data->object->payload;
 			if ($payload) { $payload = json_decode($payload, true); }
 			
+				try {
 			include ('payload.php');
 				//switch_payload($payload);
+					} catch (Exception $e) {
+			return('OK');
+			}
 			
 			if($received_message == 'Начать')
 			{
