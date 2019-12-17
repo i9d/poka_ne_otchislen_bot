@@ -4,6 +4,7 @@ require('../vendor/autoload.php');
 require ('nokogiri.php');
 require ('schedule.php');
 
+
 $app = new Silex\Application();
 $app['debug'] = true;
 // Register the monolog logging service
@@ -122,6 +123,7 @@ $app->post('/', function() use($app) {
 			
 				try {
 			include ('payload.php');
+								return('OK');
 				//switch_payload($payload);
 					} catch (Exception $e) {
 			return('OK');
@@ -137,12 +139,14 @@ $app->post('/', function() use($app) {
 										]
 							];
 						sendmessage_kbd($user_id, "Привет, {$user_name}! Я супер крутой бот 2999! Внизу появились кнопочки, выбери нужную и нажми на нее.", $kbd);
+						return('OK');
 			}
 			
 			if($received_message == '!update')
 			{
 				include ('backup.php');
 				sendmessage($user_id, "Обновлено");
+							return('OK');
 			}
 			
 			
