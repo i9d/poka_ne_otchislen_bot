@@ -109,7 +109,9 @@ $app->post('/', function() use($app) {
 			return('OK');
 			break;
 			
+			
 		case 'message_new':
+			try {
 			$token = getenv('VK_TOKEN');
 			$user_id = $data->object->user_id; 
 			$user_info = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids={$user_id}&access_token={$token}&v=5.69")); 
@@ -143,6 +145,9 @@ $app->post('/', function() use($app) {
 			
 			//sendmessage($user_id, $send_message, $kbd);
 			return('OK');
+			} catch (Exception $e) {
+			return('OK');
+			}
 			break;
 		default:
 			return('OK');
