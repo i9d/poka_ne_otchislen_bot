@@ -107,6 +107,7 @@ $app->post('/', function() use($app) {
 			$user_info = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids={$user_id}&access_token={$token}&v=5.69")); 
 			$user_name = $user_info->response[0]->first_name; 
 			sendmessage($user_id, "{$user_name}, мы будем ждать твоего возращения!", 0);
+			 echo('ok');
 			return('OK');
 			break;
 			
@@ -123,9 +124,11 @@ $app->post('/', function() use($app) {
 			
 				try {
 			include ('payload.php');
+					 echo('ok');
 								return('OK');
 				//switch_payload($payload);
 					} catch (Exception $e) {
+					 echo('ok');
 			return('OK');
 			}
 			
@@ -139,7 +142,8 @@ $app->post('/', function() use($app) {
 										]
 							];
 						sendmessage_kbd($user_id, "Привет, {$user_name}! Я супер крутой бот 2999! Внизу появились кнопочки, выбери нужную и нажми на нее.", $kbd);
-						return('OK');
+				 echo('ok');		
+				return('OK');
 			}
 			
 			if($received_message == '!update')
@@ -152,12 +156,14 @@ $app->post('/', function() use($app) {
 			
 			
 			//sendmessage($user_id, $send_message, $kbd);
+				 echo('ok');
 			return('OK');
 			} catch (Exception $e) {
 			return('OK');
 			}
 			break;
 		default:
+			 echo('ok');
 			return('OK');
 			break;
 	}
