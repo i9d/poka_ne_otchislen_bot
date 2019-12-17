@@ -46,6 +46,7 @@ function getBtn($label, $color, $payload = '') {
 function anekdot() {
 	$html = file_get_contents('https://www.anekdot.ru/random/anekdot/');
 	preg_match('~<div class="text">(.*?)</div>~', $html, $anekdotik);
+	echo('OK');
 	return $anekdotik[1];
 }
 
@@ -54,6 +55,7 @@ function weather() {
 	preg_match('~<span class="temp__value">(.*?)</span>~', $html, $gradus);
 //	preg_match('~<div class="link__condition day-anchor i-bem" data-bem='{"day-anchor":{"anchor":12}}'>(.*?)</div>~', $html, $description);
 	$weather = "Погода в Омске: {$gradus[1]}°С";// {$description[1]}";
+	echo('OK');
 	return $weather;
 }
 
@@ -70,6 +72,7 @@ function sendmessage_kbd($user_id, $message, $keyboard) {
 	);
 	$get_params = http_build_query($request_params); 
 	file_get_contents('https://api.vk.com/method/messages.send?'. $get_params); 
+	echo('OK');
 }
 
 function sendmessage($user_id, $message) {
@@ -82,7 +85,8 @@ function sendmessage($user_id, $message) {
 	);
 	$get_params = http_build_query($request_params); 
 	file_get_contents('https://api.vk.com/method/messages.send?'. $get_params); 
-	
+	echo('OK');
+
 }
 
 
