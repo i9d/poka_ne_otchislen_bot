@@ -28,6 +28,7 @@ const CMD_WEATHER = 'WEATHER';
 const CMD_SBS701 = 'СБС-701';
 const CMD_SBB701 = 'СББ-701';
 const CMD_SMB701 = 'СМБ-701';
+const CMD_EXAM = 'Экзамены';
 $group = '2';
 
 
@@ -141,7 +142,7 @@ $app->post('/', function() use($app) {
 				$kbd = [
 							'one_time' => false,
 							'buttons' => [
-								[getBtn("Расписание", COLOR_PRIMARY, CMD_SCHEDULE)],
+								[getBtn("Расписание", COLOR_PRIMARY, CMD_SCHEDULE), getBtn("Экзамены", COLOR_PRIMARY, CMD_EXAM)],
 								[getBtn("Случайный анекдот", COLOR_POSITIVE, CMD_ANEKDOT), getBtn("&#127783; Погода", COLOR_POSITIVE, CMD_WEATHER)],
 										]
 							];
