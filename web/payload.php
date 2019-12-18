@@ -48,6 +48,10 @@
 						echo('OK');
 						break;
 						
+					case CMD_EXAM:
+						sendmessage($user_id, exam());
+						echo('OK');
+						break;
 						
 					case CMD_SBB701:
 						$kbd = [
